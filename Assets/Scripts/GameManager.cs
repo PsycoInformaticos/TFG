@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public GameObject PlayerHealthbar;
     public GameObject EnemyHealthbar;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +28,11 @@ public class GameManager : MonoBehaviour
         if (Input.GetButtonDown("Fire2"))
         {
             EnemyHealthbar.GetComponent<Healthbar>().DecreaseHealth();
+        }
+
+        if (Input.GetButtonDown("Fire3"))
+        {
+            GetComponent<AttackState>().nextArrow();
         }
 
 
