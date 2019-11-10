@@ -18,7 +18,7 @@ public class Joycon
         IMU,
         RUMBLE,
     };
-	public DebugType debug_type = DebugType.IMU;
+	public DebugType debug_type = DebugType.NONE;
     public bool isLeft;
     public enum state_ : uint
     {
@@ -146,34 +146,46 @@ public class Joycon
         {
 
             byte[] rumble_data = new byte[8];
-            l_f = clamp(l_f, 40.875885f, 626.286133f);
-            amp = clamp(amp, 0.0f, 1.0f);
-            h_f = clamp(h_f, 81.75177f, 1252.572266f);
-            UInt16 hf = (UInt16)((Mathf.Round(32f * Mathf.Log(h_f * 0.1f, 2)) - 0x60) * 4);
-            byte lf = (byte)(Mathf.Round(32f * Mathf.Log(l_f * 0.1f, 2)) - 0x40);
-            byte hf_amp;
-            if (amp == 0) hf_amp = 0;
-            else if (amp < 0.117) hf_amp = (byte)(((Mathf.Log(amp * 1000, 2) * 32) - 0x60) / (5 - Mathf.Pow(amp, 2)) - 1);
-            else if (amp < 0.23) hf_amp = (byte)(((Mathf.Log(amp * 1000, 2) * 32) - 0x60) - 0x5c);
-            else hf_amp = (byte)((((Mathf.Log(amp * 1000, 2) * 32) - 0x60) * 2) - 0xf6);
-
-            UInt16 lf_amp = (UInt16)(Mathf.Round(hf_amp) * .5);
-            byte parity = (byte)(lf_amp % 2);
-            if (parity > 0)
+            if (amp == 0.0f)
             {
-                --lf_amp;
+                rumble_data[0] = 0x0;
+                rumble_data[1] = 0x1;
+                rumble_data[2] = 0x40;
+                rumble_data[3] = 0x40;
             }
+            else
+            {
 
-            lf_amp = (UInt16)(lf_amp >> 1);
-            lf_amp += 0x40;
-            if (parity > 0) lf_amp |= 0x8000;
-            rumble_data = new byte[8];
-            rumble_data[0] = (byte)(hf & 0xff);
-            rumble_data[1] = (byte)((hf >> 8) & 0xff);
-            rumble_data[2] = lf;
-            rumble_data[1] += hf_amp;
-            rumble_data[2] += (byte)((lf_amp >> 8) & 0xff);
-            rumble_data[3] += (byte)(lf_amp & 0xff);
+                l_f = clamp(l_f, 40.875885f, 626.286133f);
+                amp = clamp(amp, 0.0f, 1.0f);
+                h_f = clamp(h_f, 81.75177f, 1252.572266f);
+                UInt16 hf = (UInt16)((Mathf.Round(32f * Mathf.Log(h_f * 0.1f, 2)) - 0x60) * 4);
+                byte lf = (byte)(Mathf.Round(32f * Mathf.Log(l_f * 0.1f, 2)) - 0x40);
+                byte hf_amp;
+                if (amp == 0) hf_amp = 0;
+                else if (amp < 0.117) hf_amp = (byte)(((Mathf.Log(amp * 1000, 2) * 32) - 0x60) / (5 - Mathf.Pow(amp, 2)) - 1);
+                else if (amp < 0.23) hf_amp = (byte)(((Mathf.Log(amp * 1000, 2) * 32) - 0x60) - 0x5c);
+                else hf_amp = (byte)((((Mathf.Log(amp * 1000, 2) * 32) - 0x60) * 2) - 0xf6);
+
+                UInt16 lf_amp = (UInt16)(Mathf.Round(hf_amp) * .5);
+                byte parity = (byte)(lf_amp % 2);
+                if (parity > 0)
+                {
+                    --lf_amp;
+                }
+
+                lf_amp = (UInt16)(lf_amp >> 1);
+                lf_amp += 0x40;
+                if (parity > 0) lf_amp |= 0x8000;
+                rumble_data = new byte[8];
+                rumble_data[0] = (byte)(hf & 0xff);
+                rumble_data[1] = (byte)((hf >> 8) & 0xff);
+                rumble_data[2] = lf;
+                rumble_data[1] += hf_amp;
+                rumble_data[2] += (byte)((lf_amp >> 8) & 0xff);
+                rumble_data[3] += (byte)(lf_amp & 0xff);
+
+            }
             for (int i = 0; i < 4; ++i)
             {
                 rumble_data[4 + i] = rumble_data[i];
@@ -193,9 +205,14 @@ public class Joycon
     private byte global_count = 0;
     private string debug_str;
 
-    public Joycon()
+    public Joycon(IntPtr handle_, bool imu, bool localize, float alpha, bool left)
     {
+        handle = handle_;
+        imu_enabled = imu;
+        do_localize = localize;
         rumble_obj = new Rumble(160, 320, 0);
+        filterweight = alpha;
+        isLeft = left;
     }
     public void DebugPrint(String s, DebugType d)
     {
@@ -231,11 +248,20 @@ public class Joycon
     }
     public Quaternion GetVector()
     {
-        return Quaternion.LookRotation(new Vector3(j_b.y, i_b.y, k_b.y), new Vector3(j_b.z, i_b.z, k_b.z));
+        Vector3 v1 = new Vector3(j_b.x, i_b.x, k_b.x);
+        Vector3 v2 = -(new Vector3(j_b.z, i_b.z, k_b.z));
+        if (v2 != Vector3.zero)
+        {
+            return Quaternion.LookRotation(v1, v2);
+        }
+        else
+        {
+            return Quaternion.identity;
+        }
     }
-    public int Attach(byte leds_ = 0x0, bool imu = true, float alpha = 0.01f, bool localize = false)
+    public int Attach(byte leds_ = 0x0/*, bool imu = true, float alpha = 0.01f, bool localize = false*/)
     {
-        imu_enabled = imu;
+        /*imu_enabled = imu;
         do_localize = localize & imu;
         filterweight = alpha;
         state = state_.NOT_ATTACHED;
@@ -271,7 +297,7 @@ public class Joycon
         }
         handle = HIDapi.hid_open_path(enumerate.path);
         HIDapi.hid_set_nonblocking(handle, 1);
-        HIDapi.hid_free_enumeration(ptr);
+        HIDapi.hid_free_enumeration(ptr);*/
         state = state_.ATTACHED;
         byte[] a = { 0x0 };
         // Input report mode
@@ -315,9 +341,11 @@ public class Joycon
         }
         state = state_.NOT_ATTACHED;
     }
+
     private byte ts_en;
     private byte ts_de;
     private System.DateTime ts_prev;
+
     private int ReceiveRaw()
     {
         if (handle == IntPtr.Zero) return -2;
@@ -347,7 +375,7 @@ public class Joycon
         {
             SendRumble(rumble_obj.GetData());
             int a = ReceiveRaw();
-
+            a = ReceiveRaw();
             if (a > 0)
             {
                 state = state_.IMU_DATA_OK;
@@ -399,8 +427,9 @@ public class Joycon
                     DebugPrint(string.Format("Duplicate timestamp dequeued. TS: {0:X2}", ts_de), DebugType.THREADING);
                 }
                 ts_de = report_buf[1];
-                DebugPrint(string.Format("Dequeue. Queue length: {0:d}. Packet ID: {1:X2}. Timestamp: {2:X2}. Lag to dequeue: {3:s}. Lag between packets (expect 15ms): {4:s}",
-                    reports.Count, report_buf[0], report_buf[1], System.DateTime.Now.Subtract(rep.GetTime()), rep.GetTime().Subtract(ts_prev)), DebugType.THREADING);
+                //DA ERROR DE STRING FORMAT
+                //DebugPrint(string.Format("Dequeue. Queue length: {0:d}. Packet ID: {1:X2}. Timestamp: {2:X2}. Lag to dequeue: {3:s}. Lag between packets (expect 15ms): {4:s}",
+                //    reports.Count, report_buf[0], report_buf[1], System.DateTime.Now.Subtract(rep.GetTime()), rep.GetTime().Subtract(ts_prev)), DebugType.THREADING);
                 ts_prev = rep.GetTime();
             }
             ProcessButtonsAndStick(report_buf);

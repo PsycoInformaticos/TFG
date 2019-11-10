@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class JoyconDemo : MonoBehaviour {
-	
-    private Joycon j;
+
+    private List<Joycon> joycons;
 
     // Values made available via Unity
     public float[] stick;
     public Vector3 gyro;
     public Vector3 accel;
+    public int jc_ind = 0;
     public Quaternion orientation;
 
     void Start ()
@@ -17,16 +18,21 @@ public class JoyconDemo : MonoBehaviour {
         gyro = new Vector3(0, 0, 0);
         accel = new Vector3(0, 0, 0);
         // get the public Joycon object attached to the JoyconManager in scene
-        j = JoyconManager.Instance.j;
+        joycons = JoyconManager.Instance.j;
+        if (joycons.Count < jc_ind + 1)
+        {
+            Destroy(gameObject);
+        }
 
-	}
+    }
 
     // Update is called once per frame
     void Update () {
 		// make sure the Joycon only gets checked if attached
-        if (j != null && j.state > Joycon.state_.ATTACHED)
+        if (joycons.Count > 0)
         {
-			// GetButtonDown checks if a button has been pressed (not held)
+            Joycon j = joycons[jc_ind];
+            // GetButtonDown checks if a button has been pressed (not held)
             if (j.GetButtonDown(Joycon.Button.MINUS))
             {
 				Debug.Log ("Shoulder button 2 pressed");
