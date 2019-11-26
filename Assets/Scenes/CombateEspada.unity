@@ -988,7 +988,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1071612618}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1377210451
+--- !u!114 &1377210455
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -997,13 +997,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1377210450}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9b5c154d920d754db92ed07a735dbc4, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f39dee6dcbd2224789d278273225579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   stick: []
   gyro: {x: 0, y: 0, z: 0}
   accel: {x: 0, y: 0, z: 0}
-  jc_ind: 0
+  jcIndex: 0
   orientation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1426874342
 GameObject:

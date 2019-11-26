@@ -1,4 +1,12 @@
-﻿using UnityEngine;
+﻿/*
+ * HIDapi from https://github.com/signal11/hidapi
+ * 
+ * Finded at JoyconLib from https://github.com/Looking-Glass/JoyconLib
+ * 
+ */
+
+
+using UnityEngine;
 using System.Runtime.InteropServices;
 using System.Collections;
 using System;

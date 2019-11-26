@@ -1,3 +1,8 @@
+/*
+ * Code of JoyconLib from https://github.com/Looking-Glass/JoyconLib
+ * 
+ */
+
 #define DEBUG
 
 using System.Collections;
@@ -248,6 +253,7 @@ public class Joycon
     }
     public Quaternion GetVector()
     {
+        //TODO: revisar como va la rotación
         Vector3 v1 = new Vector3(j_b.x, i_b.x, k_b.x);
         Vector3 v2 = -(new Vector3(j_b.z, i_b.z, k_b.z));
         if (v2 != Vector3.zero)
@@ -259,45 +265,8 @@ public class Joycon
             return Quaternion.identity;
         }
     }
-    public int Attach(byte leds_ = 0x0/*, bool imu = true, float alpha = 0.01f, bool localize = false*/)
+    public int Attach(byte leds_ = 0x0)
     {
-        /*imu_enabled = imu;
-        do_localize = localize & imu;
-        filterweight = alpha;
-        state = state_.NOT_ATTACHED;
-        HIDapi.hid_init();
-        IntPtr ptr = HIDapi.hid_enumerate(vendor_id, 0x0);
-        if (ptr == IntPtr.Zero)
-        {
-            ptr = HIDapi.hid_enumerate(vendor_id_, 0x0);
-            if (ptr == IntPtr.Zero)
-            { 
-                HIDapi.hid_free_enumeration(ptr);
-                DebugPrint("No Joy-Cons found.", DebugType.ALL);
-                state = state_.NO_JOYCONS;
-                return -1;
-            }
-        }
-        hid_device_info enumerate = (hid_device_info)Marshal.PtrToStructure(ptr, typeof(hid_device_info));
-        if (enumerate.product_id == product_l)
-        {
-            isLeft = true;
-            DebugPrint("Left Joy-Con connected.", DebugType.ALL);
-        }
-        else if (enumerate.product_id == product_r)
-        {
-            DebugPrint("Right Joy-Con connected.", DebugType.ALL);
-        }
-        else
-        {
-            HIDapi.hid_free_enumeration(ptr);
-            DebugPrint("No Joy-Cons found.", DebugType.ALL);
-            state = state_.NO_JOYCONS;
-            return -1;
-        }
-        handle = HIDapi.hid_open_path(enumerate.path);
-        HIDapi.hid_set_nonblocking(handle, 1);
-        HIDapi.hid_free_enumeration(ptr);*/
         state = state_.ATTACHED;
         byte[] a = { 0x0 };
         // Input report mode

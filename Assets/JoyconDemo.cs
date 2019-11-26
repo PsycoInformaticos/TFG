@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/*
+ * Code of JoyconLib from https://github.com/Looking-Glass/JoyconLib
+ * 
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

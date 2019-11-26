@@ -66,6 +66,7 @@
     <Compile Include="Assets\JoyconLib_scripts\HIDapi.cs" />
     <Compile Include="Assets\JoyconLib_scripts\Joycon.cs" />
     <Compile Include="Assets\JoyconLib_scripts\JoyconManager.cs" />
+    <Compile Include="Assets\JoyconMovement.cs" />
     <Compile Include="Assets\Scripts\AttackState.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Healthbar.cs" />
