@@ -115,4 +115,5 @@ public class JoyconManager: MonoBehaviour
             j[i].Detach();
         }
     }
+
 }

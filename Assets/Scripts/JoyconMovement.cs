@@ -18,6 +18,9 @@ public class JoyconMovement : MonoBehaviour
     public int jcIndex = 0;
     public Quaternion orientation;
 
+    public GameObject sword;
+    public GameObject shield;
+
     void Start()
     {
         gyro = new Vector3(0, 0, 0);
@@ -73,17 +76,54 @@ public class JoyconMovement : MonoBehaviour
                 // Then call SetRumble(0,0,0) when you want to turn it off.
             }
 
-            stick = j.GetStick();
-
-            // Gyro values: x, y, z axis values (in radians per second)
-            gyro = j.GetGyro();
-
-            // Accel values:  x, y, z axis values (in Gs)
-            accel = j.GetAccel();
-
-            orientation = j.GetVector();
-            gameObject.transform.rotation = orientation;
+            Movement();
 
         }
+    }
+
+    void Movement()
+    {
+
+        Joycon j = joycons[jcIndex];
+
+        //Entendemos que la lista
+
+        if (gameObject == sword)
+        {
+            if (!joycons[0].isLeft) 
+            {
+                j = joycons[0];
+
+            }
+
+            else
+                j = joycons[1];
+
+        }
+
+        else if (gameObject == shield)
+        {
+            if (joycons[0].isLeft)
+            {
+                j = joycons[0];
+
+            }
+
+            else
+                j = joycons[1];
+
+        }
+
+        stick = j.GetStick();
+
+        // Gyro values: x, y, z axis values (in radians per second)
+        gyro = j.GetGyro();
+
+        // Accel values:  x, y, z axis values (in Gs)
+        accel = j.GetAccel();
+
+        orientation = j.GetVector();
+        gameObject.transform.rotation = orientation;
+
     }
 }
