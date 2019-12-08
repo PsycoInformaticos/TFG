@@ -258,7 +258,8 @@ public class Joycon
         Vector3 v2 = -(new Vector3(j_b.z, i_b.z, k_b.z));
         if (v2 != Vector3.zero)
         {
-            return Quaternion.LookRotation(v1, v2);
+            //Al cambiar v1 por v2 detecta mejor la orientación
+            return Quaternion.LookRotation(v2, v1);
         }
         else
         {

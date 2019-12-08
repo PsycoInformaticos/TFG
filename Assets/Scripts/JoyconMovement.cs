@@ -123,6 +123,7 @@ public class JoyconMovement : MonoBehaviour
         accel = j.GetAccel();
 
         orientation = j.GetVector();
+
         gameObject.transform.rotation = orientation;
 
     }
