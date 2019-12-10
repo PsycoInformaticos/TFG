@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6280741794162511693}
   - component: {fileID: 8104393651320662940}
-  - component: {fileID: 6394790550293597090}
+  - component: {fileID: -552449099496719923}
   m_Layer: 5
   m_Name: AttackArrow
   m_TagString: Untagged
@@ -45,7 +45,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2484772808473499147}
   m_CullTransparentMesh: 0
---- !u!114 &6394790550293597090
+--- !u!114 &-552449099496719923
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.85882354}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

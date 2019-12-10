@@ -21,6 +21,8 @@ public class JoyconMovement : MonoBehaviour
     public GameObject sword;
     public GameObject shield;
 
+    
+
     void Start()
     {
         gyro = new Vector3(0, 0, 0);
@@ -55,6 +57,7 @@ public class JoyconMovement : MonoBehaviour
             if (j.GetButtonUp(Joycon.Button.PLUS))
             {
                 Debug.Log("Plus released");
+                Debug.Log(accel);
             }
             // GetButtonDown checks if a button is currently down (pressed or held)
             if (j.GetButton(Joycon.Button.PLUS))
@@ -122,9 +125,19 @@ public class JoyconMovement : MonoBehaviour
         // Accel values:  x, y, z axis values (in Gs)
         accel = j.GetAccel();
 
-        orientation = j.GetVector();
+        orientation.x = j.GetVector().x;
+        orientation.y = j.GetVector().y;
+        orientation.w = j.GetVector().w;
+        //Al sumarle la y a la z el gameObject se coloca en la posición que tiene el mando. Actúan sobre el mismo eje de forma contraria
+        orientation.z = j.GetVector().z + j.GetVector().y;
 
         gameObject.transform.rotation = orientation;
 
+    }
+
+    //Devuelve la aceleración que tiene cuando se le pide
+    public Vector3 getAccel()
+    {
+        return accel;
     }
 }

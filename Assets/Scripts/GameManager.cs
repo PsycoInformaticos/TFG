@@ -18,23 +18,30 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetButtonDown("Fire1"))
+        //Esto es para debugear que la vida de cada personaje baja y salen flechas aleatorias
+        if (Input.GetButtonDown("Fire1")) //E
         {
             PlayerHealthbar.GetComponent<Healthbar>().DecreaseHealth();
 
         }
 
-        if (Input.GetButtonDown("Fire2"))
+        if (Input.GetButtonDown("Fire2")) //R
         {
             EnemyHealthbar.GetComponent<Healthbar>().DecreaseHealth();
         }
 
-        if (Input.GetButtonDown("Fire3"))
+        bool flecha = false;
+        if (Input.GetButtonDown("Fire3")) //T
         {
             GetComponent<AttackState>().nextArrow();
-        }
+            flecha = true; 
 
+        }
+        if (flecha)
+        {
+            GetComponent<AttackState>().attack();
+            flecha = false;
+        }
 
     }
 }
