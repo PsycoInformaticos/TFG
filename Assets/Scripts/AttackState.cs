@@ -32,7 +32,31 @@ public class AttackState : MonoBehaviour
        Image arrow = (Image)arrowQueue.Peek();
 
         //Arriba
-        if (arrow.transform.rotation.z == 0 && (accel.x > 0 && accel.y > 0 && accel.y > 0))
+        if (arrow.transform.rotation.z == 0 && sword.GetComponent<JoyconMovement>().isAMovement(0))
+        {
+            //Revisar como destruir una imagen de una cola
+            Destroy((Image)arrowQueue.Peek());
+            arrowQueue.Dequeue();
+        }
+
+        //Abajo
+        if (arrow.transform.rotation.z == 180 && sword.GetComponent<JoyconMovement>().isAMovement(1))
+        {
+            //Revisar como destruir una imagen de una cola
+            Destroy((Image)arrowQueue.Peek());
+            arrowQueue.Dequeue();
+        }
+
+        //Derecha
+        if (arrow.transform.rotation.z == 90 && sword.GetComponent<JoyconMovement>().isAMovement(2))
+        {
+            //Revisar como destruir una imagen de una cola
+            Destroy((Image)arrowQueue.Peek());
+            arrowQueue.Dequeue();
+        }
+
+        //Izquierda
+        if (arrow.transform.rotation.z == -90 && sword.GetComponent<JoyconMovement>().isAMovement(3))
         {
             //Revisar como destruir una imagen de una cola
             Destroy((Image)arrowQueue.Peek());
