@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class AttackState : MonoBehaviour
 {
-    public Image attackArrow;
+    public GameObject attackArrow;
     public Canvas canvas;
 
     public GameObject sword;
@@ -30,13 +30,13 @@ public class AttackState : MonoBehaviour
     {
         //Se generará nueva flecha por tiempo y no pulsando un botón
 
-       Image arrow = (Image)arrowQueue.Peek();
+       GameObject arrow = (GameObject)arrowQueue.Peek();
 
         //Arriba
         if (arrow.transform.rotation.z == 0 && sword.GetComponent<JoyconMovement>().isAMovement(0))
         {
             //Revisar como destruir una imagen de una cola
-            Destroy((Image)arrowQueue.Peek());
+            Destroy(arrow);
             arrowQueue.Dequeue();
             flechaDestruida = true;
         }
@@ -44,23 +44,23 @@ public class AttackState : MonoBehaviour
         //Abajo
         if (arrow.transform.rotation.z == 180 && sword.GetComponent<JoyconMovement>().isAMovement(1))
         {
-            Destroy((Image)arrowQueue.Peek());
+            Destroy(arrow);
             arrowQueue.Dequeue();
             flechaDestruida = true;
         }
 
         //Derecha
-        if (arrow.transform.rotation.z == 90 && sword.GetComponent<JoyconMovement>().isAMovement(2))
+        if (arrow.transform.rotation.z == -90 && sword.GetComponent<JoyconMovement>().isAMovement(2))
         {
-            Destroy((Image)arrowQueue.Peek());
+            Destroy(arrow);
             arrowQueue.Dequeue();
             flechaDestruida = true;
         }
 
         //Izquierda
-        if (arrow.transform.rotation.z == -90 && sword.GetComponent<JoyconMovement>().isAMovement(3))
+        if (arrow.transform.rotation.z == 90 && sword.GetComponent<JoyconMovement>().isAMovement(3))
         {
-            Destroy((Image)arrowQueue.Peek());
+            Destroy(arrow);
             arrowQueue.Dequeue();
             flechaDestruida = true;
         }
@@ -94,11 +94,11 @@ public class AttackState : MonoBehaviour
                 break;
         }
        
-        Instantiate(attackArrow, posArrow, transform.rotation, canvas.transform);
+        GameObject auxArrow = Instantiate(attackArrow, posArrow, transform.rotation, canvas.transform);
         
         transform.Rotate(0, 0, rotationZ);
 
-        arrowQueue.Enqueue(attackArrow);
+        arrowQueue.Enqueue(auxArrow);
 
         flechaDestruida = false;
 

@@ -1817,7 +1817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c8fe33994ba5364396cd0019883c2a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackArrow: {fileID: -552449099496719923, guid: 7638f6bf46b48754e900b21ba3aa0462,
+  attackArrow: {fileID: 2484772808473499147, guid: 7638f6bf46b48754e900b21ba3aa0462,
     type: 3}
   canvas: {fileID: 2004370809}
-  sword: {fileID: 188480480}
+  sword: {fileID: 1377210450}

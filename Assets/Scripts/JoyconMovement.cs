@@ -77,6 +77,7 @@ public class JoyconMovement : MonoBehaviour
         if (joycons.Count > 0)
         {
             Input();
+            Movement();
 
         }
     }
@@ -138,14 +139,11 @@ public class JoyconMovement : MonoBehaviour
     //Cutre código por probar con el contador
     public bool isAMovement(int m)
     {
-        Debug.Log(j);
-
-        Movement();
-
+        
         //Ariba = 0
         if (m == 0)
         {
-            if (contUp >= 10)
+            if (contUp >= 30)
             {
                 contUp = 0;
                 return true;
@@ -162,7 +160,7 @@ public class JoyconMovement : MonoBehaviour
         //Abajo = 1 
         else if (m == 1)
         {
-            if (contDown >= 10)
+            if (contDown >= 5)
             {
                 contDown = 0;
                 return true;
@@ -179,7 +177,7 @@ public class JoyconMovement : MonoBehaviour
         //Derecha = 2
         else if (m == 2)
         {
-            if (contRight >= 10)
+            if (contRight >= 5)
             {
                 contRight = 0;
                 return true;
@@ -196,7 +194,7 @@ public class JoyconMovement : MonoBehaviour
         //Izquierda = 3
         else if (m == 3)
         {
-            if (contLeft >= 10)
+            if (contLeft >= 5)
             {
                 contLeft = 0;
                 return true;
