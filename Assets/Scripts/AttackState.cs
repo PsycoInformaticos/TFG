@@ -9,6 +9,8 @@ public class AttackState : MonoBehaviour
     public Canvas canvas;
 
     public GameObject sword;
+    public GameObject PlayerHealthbar;
+    public GameObject EnemyHealthbar;
 
     Vector3 accel;
 
@@ -23,46 +25,25 @@ public class AttackState : MonoBehaviour
         flechaDestruida = true;
     }
 
-    //enum direction { up, down, left, right}
-
     //Principal run of the attack state in the combats
     public void attack()
     {
-        //Se generará nueva flecha por tiempo y no pulsando un botón
+        //Se generará nueva flecha por tiempo
 
        GameObject arrow = (GameObject)arrowQueue.Peek();
 
-        //Arriba
-        if (arrow.transform.rotation.z == 0 && sword.GetComponent<JoyconMovement>().isAMovement(0))
+        //Revisa si hay una flecha en una dirección y se mueve el mando en la misma
+        if ((arrow.transform.rotation.z == 0 && sword.GetComponent<JoyconMovement>().isAMovement(0))        //Arriba
+            || (arrow.transform.rotation.z == 180 && sword.GetComponent<JoyconMovement>().isAMovement(1))   //Abajo
+            || (arrow.transform.rotation.z == -90 && sword.GetComponent<JoyconMovement>().isAMovement(2))   //Derecha
+            || (arrow.transform.rotation.z == 90 && sword.GetComponent<JoyconMovement>().isAMovement(3)))   //Izquierda
         {
-            //Revisar como destruir una imagen de una cola
+            //Destruye el objeto y lo quita de la cola
             Destroy(arrow);
             arrowQueue.Dequeue();
             flechaDestruida = true;
-        }
 
-        //Abajo
-        if (arrow.transform.rotation.z == 180 && sword.GetComponent<JoyconMovement>().isAMovement(1))
-        {
-            Destroy(arrow);
-            arrowQueue.Dequeue();
-            flechaDestruida = true;
-        }
-
-        //Derecha
-        if (arrow.transform.rotation.z == -90 && sword.GetComponent<JoyconMovement>().isAMovement(2))
-        {
-            Destroy(arrow);
-            arrowQueue.Dequeue();
-            flechaDestruida = true;
-        }
-
-        //Izquierda
-        if (arrow.transform.rotation.z == 90 && sword.GetComponent<JoyconMovement>().isAMovement(3))
-        {
-            Destroy(arrow);
-            arrowQueue.Dequeue();
-            flechaDestruida = true;
+            EnemyHealthbar.GetComponent<Healthbar>().DecreaseHealth();
         }
 
     }

@@ -22,8 +22,9 @@ public class JoyconMovement : MonoBehaviour
     public GameObject sword;
     //public GameObject shield;
 
-    int contUp, contDown, contRight, contLeft;
-
+    //float contUp, contDown, contRight, contLeft;
+    float contador;
+    bool movUp, movDown, movRight, movLeft;
     
 
     void Start()
@@ -37,7 +38,9 @@ public class JoyconMovement : MonoBehaviour
             Destroy(gameObject);
         }
 
-        contUp = contDown = contRight = contLeft = 0;
+        //contUp = contDown = contRight = contLeft = 0.0f;
+        contador = 0.0f;
+        movUp = movDown = movRight = movLeft = false;
 
         //Asignacion de cada mando a un objeto
         j = joycons[jcIndex];
@@ -80,6 +83,17 @@ public class JoyconMovement : MonoBehaviour
             Movement();
 
         }
+
+        if (movUp || movDown || movRight || movLeft)
+        {
+            contador += Time.deltaTime;
+        }
+
+        else
+        {
+            contador = 0;
+        }
+
     }
 
     void Input()
@@ -143,70 +157,77 @@ public class JoyconMovement : MonoBehaviour
         //Ariba = 0
         if (m == 0)
         {
-            if (contUp >= 30)
+
+            if (movUp && contador >= 0.5)
             {
-                contUp = 0;
+                contador = 0;
+                movUp = false;
                 return true;
             }
             else
             {
                 if(accel.x > 0 && accel.y > 0 && accel.z > 0)
                 {
-                    contUp++;
+                    movUp = true;
+                    
+                }
+                else
+                {
+                    movUp = false;
                 }
             }
         }
 
         //Abajo = 1 
-        else if (m == 1)
-        {
-            if (contDown >= 5)
-            {
-                contDown = 0;
-                return true;
-            }
-            else
-            {
-                if (accel.x < 0 && accel.y < 0 && accel.z < 0)
-                {
-                    contDown++;
-                }
-            }
-        }
+        //else if (m == 1)
+        //{
+        //    if (contDown >= 5)
+        //    {
+        //        contDown = 0;
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        if (accel.x < 0 && accel.y < 0 && accel.z < 0)
+        //        {
+        //            contDown++;
+        //        }
+        //    }
+        //}
 
-        //Derecha = 2
-        else if (m == 2)
-        {
-            if (contRight >= 5)
-            {
-                contRight = 0;
-                return true;
-            }
-            else
-            {
-                if (accel.x > 0 && accel.y > 0 && accel.z > 0)
-                {
-                    contRight++;
-                }
-            }
-        }
+        ////Derecha = 2
+        //else if (m == 2)
+        //{
+        //    if (contRight >= 5)
+        //    {
+        //        contRight = 0;
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        if (accel.x > 0 && accel.y > 0 && accel.z > 0)
+        //        {
+        //            contRight++;
+        //        }
+        //    }
+        //}
 
-        //Izquierda = 3
-        else if (m == 3)
-        {
-            if (contLeft >= 5)
-            {
-                contLeft = 0;
-                return true;
-            }
-            else
-            {
-                if (accel.x > 0 && accel.y > 0 && accel.z > 0)
-                {
-                    contLeft++;
-                }
-            }
-        }
+        ////Izquierda = 3
+        //else if (m == 3)
+        //{
+        //    if (contLeft >= 5)
+        //    {
+        //        contLeft = 0;
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        if (accel.x > 0 && accel.y > 0 && accel.z > 0)
+        //        {
+        //            contLeft++;
+        //        }
+        //    }
+        //}
 
         return false;
     }
