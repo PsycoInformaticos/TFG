@@ -8,11 +8,13 @@ public class GameManager : MonoBehaviour
     public GameObject PlayerHealthbar;
     public GameObject EnemyHealthbar;
 
+    bool flecha;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        flecha = false;
     }
 
     // Update is called once per frame
@@ -30,7 +32,6 @@ public class GameManager : MonoBehaviour
             EnemyHealthbar.GetComponent<Healthbar>().DecreaseHealth();
         }
 
-        bool flecha = false;
         if (Input.GetButtonDown("Fire3")) //T
         {
             GetComponent<AttackState>().nextArrow();
@@ -40,7 +41,9 @@ public class GameManager : MonoBehaviour
         if (flecha)
         {
             GetComponent<AttackState>().attack();
-            flecha = false;
+
+            if (GetComponent<AttackState>().GetFlechaDestruida())
+                flecha = false;
         }
 
     }

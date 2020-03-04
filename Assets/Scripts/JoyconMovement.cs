@@ -10,6 +10,7 @@ using UnityEngine;
 public class JoyconMovement : MonoBehaviour
 {
     private List<Joycon> joycons;
+    Joycon j;
 
     // Values made available via Unity
     public float[] stick;
@@ -19,7 +20,7 @@ public class JoyconMovement : MonoBehaviour
     public Quaternion orientation;
 
     public GameObject sword;
-    public GameObject shield;
+    //public GameObject shield;
 
     int contUp, contDown, contRight, contLeft;
 
@@ -38,6 +39,35 @@ public class JoyconMovement : MonoBehaviour
 
         contUp = contDown = contRight = contLeft = 0;
 
+        //Asignacion de cada mando a un objeto
+        j = joycons[jcIndex];
+
+        if (gameObject == sword)
+        {
+            if (!joycons[0].isLeft)
+            {
+                j = joycons[0];
+
+            }
+
+            else
+                j = joycons[1];
+
+        }
+
+        //else if (gameObject == shield)
+        //{
+        //    if (joycons[0].isLeft)
+        //    {
+        //        j = joycons[0];
+
+        //    }
+
+        //    else
+        //        j = joycons[1];
+
+        //}
+
     }
 
     // Update is called once per frame
@@ -47,8 +77,6 @@ public class JoyconMovement : MonoBehaviour
         if (joycons.Count > 0)
         {
             Input();
-
-            Movement();
 
         }
     }
@@ -60,8 +88,6 @@ public class JoyconMovement : MonoBehaviour
         if (j.GetButtonDown(Joycon.Button.PLUS))
         {
             Debug.Log("Plus button pressed");
-            // GetStick returns a 2-element vector with x/y joystick components
-            Debug.Log(string.Format("Stick x: {0:N} Stick y: {1:N}", j.GetStick()[0], j.GetStick()[1]));
 
             // Joycon has no magnetometer, so it cannot accurately determine its yaw value. Joycon.Recenter allows the user to reset the yaw value.
             j.Recenter();
@@ -71,11 +97,6 @@ public class JoyconMovement : MonoBehaviour
         {
             Debug.Log("Plus released");
             Debug.Log(accel);
-        }
-        // GetButtonDown checks if a button is currently down (pressed or held)
-        if (j.GetButton(Joycon.Button.PLUS))
-        {
-            Debug.Log("Plus held");
         }
 
         if (j.GetButtonDown(Joycon.Button.DPAD_DOWN))
@@ -95,34 +116,6 @@ public class JoyconMovement : MonoBehaviour
 
     void Movement()
     {
-
-        Joycon j = joycons[jcIndex];
-
-        if (gameObject == sword)
-        {
-            if (!joycons[0].isLeft) 
-            {
-                j = joycons[0];
-
-            }
-
-            else
-                j = joycons[1];
-
-        }
-
-        else if (gameObject == shield)
-        {
-            if (joycons[0].isLeft)
-            {
-                j = joycons[0];
-
-            }
-
-            else
-                j = joycons[1];
-
-        }
 
         stick = j.GetStick();
 
@@ -145,6 +138,10 @@ public class JoyconMovement : MonoBehaviour
     //Cutre código por probar con el contador
     public bool isAMovement(int m)
     {
+        Debug.Log(j);
+
+        Movement();
+
         //Ariba = 0
         if (m == 0)
         {

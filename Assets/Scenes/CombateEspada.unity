@@ -280,7 +280,6 @@ MonoBehaviour:
   jcIndex: 0
   orientation: {x: 0, y: 0, z: 0, w: 0}
   sword: {fileID: 0}
-  shield: {fileID: 0}
 --- !u!1 &341890800
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,6 +421,10 @@ PrefabInstance:
     - target: {fileID: 100006, guid: a45a25ec0193de54fbd3efca6e19755e, type: 3}
       propertyPath: m_Name
       value: Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: a45a25ec0193de54fbd3efca6e19755e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: a45a25ec0193de54fbd3efca6e19755e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -869,7 +872,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: a45a25ec0193de54fbd3efca6e19755e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: a45a25ec0193de54fbd3efca6e19755e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1039,7 +1042,6 @@ MonoBehaviour:
   jcIndex: 0
   orientation: {x: 0, y: 0, z: 0, w: 0}
   sword: {fileID: 1377210450}
-  shield: {fileID: 1426874342}
 --- !u!1 &1426874342
 GameObject:
   m_ObjectHideFlags: 0
@@ -1059,7 +1061,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1426874343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1078,7 +1080,6 @@ MonoBehaviour:
   jcIndex: 0
   orientation: {x: 0, y: 0, z: 0, w: 0}
   sword: {fileID: 1377210450}
-  shield: {fileID: 1426874342}
 --- !u!136 &1426874344
 CapsuleCollider:
   m_ObjectHideFlags: 0

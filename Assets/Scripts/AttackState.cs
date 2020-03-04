@@ -14,9 +14,13 @@ public class AttackState : MonoBehaviour
 
     Queue arrowQueue;
 
+    bool flechaDestruida;
+
     private void Start()
     {
         arrowQueue = new Queue();
+
+        flechaDestruida = true;
     }
 
     //enum direction { up, down, left, right}
@@ -26,9 +30,6 @@ public class AttackState : MonoBehaviour
     {
         //Se generará nueva flecha por tiempo y no pulsando un botón
 
-        //Recogemos la aceleración que guarda la espada
-        accel = sword.GetComponent<JoyconMovement>().getAccel();
-
        Image arrow = (Image)arrowQueue.Peek();
 
         //Arriba
@@ -37,30 +38,31 @@ public class AttackState : MonoBehaviour
             //Revisar como destruir una imagen de una cola
             Destroy((Image)arrowQueue.Peek());
             arrowQueue.Dequeue();
+            flechaDestruida = true;
         }
 
         //Abajo
         if (arrow.transform.rotation.z == 180 && sword.GetComponent<JoyconMovement>().isAMovement(1))
         {
-            //Revisar como destruir una imagen de una cola
             Destroy((Image)arrowQueue.Peek());
             arrowQueue.Dequeue();
+            flechaDestruida = true;
         }
 
         //Derecha
         if (arrow.transform.rotation.z == 90 && sword.GetComponent<JoyconMovement>().isAMovement(2))
         {
-            //Revisar como destruir una imagen de una cola
             Destroy((Image)arrowQueue.Peek());
             arrowQueue.Dequeue();
+            flechaDestruida = true;
         }
 
         //Izquierda
         if (arrow.transform.rotation.z == -90 && sword.GetComponent<JoyconMovement>().isAMovement(3))
         {
-            //Revisar como destruir una imagen de una cola
             Destroy((Image)arrowQueue.Peek());
             arrowQueue.Dequeue();
+            flechaDestruida = true;
         }
 
     }
@@ -98,5 +100,12 @@ public class AttackState : MonoBehaviour
 
         arrowQueue.Enqueue(attackArrow);
 
+        flechaDestruida = false;
+
+    }
+
+    public bool GetFlechaDestruida ()
+    {
+        return flechaDestruida;
     }
 }
