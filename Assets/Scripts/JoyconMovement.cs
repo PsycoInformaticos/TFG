@@ -22,13 +22,18 @@ public class JoyconMovement : MonoBehaviour
     public GameObject sword;
     //public GameObject shield;
 
-    //float contUp, contDown, contRight, contLeft;
+    //Variables para recoger movimientos
     float contador;
     bool movUp, movDown, movRight, movLeft;
+
+    //Variables para la recogida de datos
+    bool pressed;
     
 
     void Start()
     {
+        pressed = false;
+
         gyro = new Vector3(0, 0, 0);
         accel = new Vector3(0, 0, 0);
         // get the public Joycon object attached to the JoyconManager in scene
@@ -126,6 +131,12 @@ public class JoyconMovement : MonoBehaviour
             // The last argument (time) in SetRumble is optional. Call it with three arguments to turn it on without telling it when to turn off.
             // (Useful for dynamically changing rumble values.)
             // Then call SetRumble(0,0,0) when you want to turn it off.
+        }
+
+        //Al pulsar la A se activa el booleano para poder recoger la aceleracion
+        if (j.GetButtonDown(0))
+        {
+            pressed = true;
         }
     }
 
@@ -236,5 +247,16 @@ public class JoyconMovement : MonoBehaviour
     public Vector3 getAccel()
     {
         return accel;
+    }
+
+    //Devuelve si ha sido pulsada la A del mando o no para recoger datos
+    public bool getPressed()
+    {
+        return pressed;
+    }
+
+    public void setNotPressed()
+    {
+        pressed = false;
     }
 }

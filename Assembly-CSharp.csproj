@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\CollectData.cs" />
     <Compile Include="Assets\JoyconDemo.cs" />
     <Compile Include="Assets\JoyconLib_scripts\HIDapi.cs" />
     <Compile Include="Assets\JoyconLib_scripts\Joycon.cs" />
