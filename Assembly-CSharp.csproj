@@ -63,14 +63,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\CollectData.cs" />
-    <Compile Include="Assets\JoyconDemo.cs" />
     <Compile Include="Assets\JoyconLib_scripts\HIDapi.cs" />
     <Compile Include="Assets\JoyconLib_scripts\Joycon.cs" />
     <Compile Include="Assets\JoyconLib_scripts\JoyconManager.cs" />
     <Compile Include="Assets\Scripts\AttackState.cs" />
+    <Compile Include="Assets\Scripts\CollectData.cs" />
+    <Compile Include="Assets\Scripts\Data.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Healthbar.cs" />
+    <Compile Include="Assets\Scripts\JoyconDemo.cs" />
     <Compile Include="Assets\Scripts\JoyconMovement.cs" />
     <Compile Include="Assets\Supercyan Character Pack Free Sample\Scripts\CameraLogic.cs" />
     <Compile Include="Assets\Supercyan Character Pack Free Sample\Scripts\Demo.cs" />
