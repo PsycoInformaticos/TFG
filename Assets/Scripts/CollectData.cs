@@ -22,25 +22,25 @@ public class CollectData : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //Si JoyconMovement devuelve que se ha pulsado el botón b cuenta 2 segundos
+        //Si JoyconMovement devuelve que se ha pulsado el botón b cuenta 1 segundo
         if (sword.GetComponent<JoyconMovement>().getPressed())
         {
             //Se guarda la aceleración en cada momento que se detecte como botón pulsado
             accel = sword.GetComponent<JoyconMovement>().getAccel();
 
             //Suponemos que hay 50 fixedupdate por segundo
-            //Si el contador llega a 100 (unos 2 segundos), le indicará a JoyconMovement
+            //Si el contador llega a 50 (uno segundo), le indicará a JoyconMovement
             //que ponga a false el pulsado y que no entre aquí
             //Además señala que es la última linea y manda true para que no escriba coma al final
             //Y el contador vuelve a su estado inicial
-            if (cont >= 100)
+            if (cont >= 50)
             {
                 sword.GetComponent<JoyconMovement>().setNotPressed();
                 dataFile.Write(accel.x, accel.y, accel.z, true);
                 cont = 0;
             }
 
-            //Si no han pasado los 2 segundos, sigue escribiendo los distintos valores
+            //Si no ha pasado un segundo, sigue escribiendo los distintos valores
             //de la aceleración
             else
             {
