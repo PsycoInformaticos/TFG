@@ -1,11 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="packages\SciSharp.TensorFlow.Redist.2.3.1\build\netstandard2.0\SciSharp.TensorFlow.Redist.props" Condition="Exists('packages\SciSharp.TensorFlow.Redist.2.3.1\build\netstandard2.0\SciSharp.TensorFlow.Redist.props')" />
-  <Import Project="packages\MethodBoundaryAspect.Fody.2.0.138\build\MethodBoundaryAspect.Fody.props" Condition="Exists('packages\MethodBoundaryAspect.Fody.2.0.138\build\MethodBoundaryAspect.Fody.props')" />
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -52,6 +48,7 @@
   <PropertyGroup>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <UnityProjectGenerator>Unity/VSTU</UnityProjectGenerator>
+    <UnityProjectGeneratorVersion>4.8.2.0</UnityProjectGeneratorVersion>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2019.3.1f1</UnityVersion>
@@ -60,49 +57,7 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Google.Protobuf, Version=3.11.4.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
-      <HintPath>packages\Google.Protobuf.3.11.4\lib\net45\Google.Protobuf.dll</HintPath>
-    </Reference>
-    <Reference Include="Keras, Version=3.8.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Keras.NET.3.8.5\lib\netstandard2.0\Keras.dll</HintPath>
-    </Reference>
-    <Reference Include="MethodBoundaryAspect, Version=2.0.138.0, Culture=neutral, PublicKeyToken=296379d5065c9d61, processorArchitecture=MSIL">
-      <HintPath>packages\MethodBoundaryAspect.Fody.2.0.138\lib\net452\MethodBoundaryAspect.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Numpy.Bare, Version=3.7.1.4, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Numpy.Bare.3.8.1.25\lib\netstandard2.0\Numpy.Bare.dll</HintPath>
-    </Reference>
-    <Reference Include="NumSharp.Lite, Version=0.1.9.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\NumSharp.Lite.0.1.9\lib\netstandard2.0\NumSharp.Lite.dll</HintPath>
-    </Reference>
-    <Reference Include="Protobuf.Text, Version=0.4.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\Protobuf.Text.0.4.0\lib\netstandard2.0\Protobuf.Text.dll</HintPath>
-    </Reference>
-    <Reference Include="Python.Runtime, Version=2.5.1.0, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>packages\pythonnet_netstandard_py38_win.2.5.1\lib\netstandard2.0\Python.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.Memory.4.5.3\lib\netstandard2.0\System.Memory.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Numerics.Vectors, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>packages\System.Numerics.Vectors.4.4.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
-    <Reference Include="Tensorflow.Keras, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\TensorFlow.Keras.0.1.0\lib\netstandard2.0\Tensorflow.Keras.dll</HintPath>
-    </Reference>
-    <Reference Include="TensorFlow.NET, Version=0.30.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\TensorFlow.NET.0.30.0\lib\netstandard2.0\TensorFlow.NET.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2019.3.1f1\Editor\Data\Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -539,9 +494,6 @@
     <Reference Include="System.Runtime.Serialization.Json">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.1f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.Serialization.Json.dll</HintPath>
     </Reference>
-    <Reference Include="System.Runtime.Serialization.Primitives">
-      <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.1f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.Serialization.Primitives.dll</HintPath>
-    </Reference>
     <Reference Include="System.Runtime.Serialization.Xml">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.1f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.Serialization.Xml.dll</HintPath>
     </Reference>
@@ -590,9 +542,6 @@
     <Reference Include="System.Threading.Tasks.Parallel">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.1f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Threading.Tasks.Parallel.dll</HintPath>
     </Reference>
-    <Reference Include="System.Threading.Thread">
-      <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.1f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Threading.Thread.dll</HintPath>
-    </Reference>
     <Reference Include="System.Threading.ThreadPool">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.1f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Threading.ThreadPool.dll</HintPath>
     </Reference>
@@ -619,6 +568,9 @@
     </Reference>
     <Reference Include="System.Xml.XPath.XDocument">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.1f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Xml.XPath.XDocument.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics.Vectors">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.1f1/Editor/Data/NetStandard/Extensions/2.0.0/System.Numerics.Vectors.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.InteropServices.WindowsRuntime">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.1f1/Editor/Data/NetStandard/Extensions/2.0.0/System.Runtime.InteropServices.WindowsRuntime.dll</HintPath>
@@ -677,15 +629,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
-  <Import Project="packages\Fody.6.0.5\build\Fody.targets" Condition="Exists('packages\Fody.6.0.5\build\Fody.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('packages\Fody.6.0.5\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Fody.6.0.5\build\Fody.targets'))" />
-    <Error Condition="!Exists('packages\MethodBoundaryAspect.Fody.2.0.138\build\MethodBoundaryAspect.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\MethodBoundaryAspect.Fody.2.0.138\build\MethodBoundaryAspect.Fody.props'))" />
-    <Error Condition="!Exists('packages\SciSharp.TensorFlow.Redist.2.3.1\build\netstandard2.0\SciSharp.TensorFlow.Redist.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\SciSharp.TensorFlow.Redist.2.3.1\build\netstandard2.0\SciSharp.TensorFlow.Redist.props'))" />
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -23,8 +23,15 @@ public class JoyconMovement : MonoBehaviour
     //public GameObject shield;
 
     //Variables para recoger movimientos
-    float contador;
+    float cont;
     bool movUp, movDown, movRight, movLeft;
+
+    //Cada movimiento tiene 150 valores de aceleracion (50 de 3 ejes cada uno)
+    float[] move = new float[150];
+    int it;                          //iterador de move
+    bool isMove;
+
+    NeuralNetwork red;
 
     //Variables para la recogida de datos
     bool pressed;
@@ -33,6 +40,8 @@ public class JoyconMovement : MonoBehaviour
     void Start()
     {
         pressed = false;
+        isMove = false;
+        it = 0;
 
         gyro = new Vector3(0, 0, 0);
         accel = new Vector3(0, 0, 0);
@@ -44,7 +53,7 @@ public class JoyconMovement : MonoBehaviour
         }
 
         //contUp = contDown = contRight = contLeft = 0.0f;
-        contador = 0.0f;
+        cont = 0.0f;
         movUp = movDown = movRight = movLeft = false;
 
         //Asignacion de cada mando a un objeto
@@ -78,6 +87,12 @@ public class JoyconMovement : MonoBehaviour
 
     }
 
+    private void FixedUpdate()
+    {
+        Movement();
+
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -85,18 +100,8 @@ public class JoyconMovement : MonoBehaviour
         if (joycons.Count > 0)
         {
             Input();
-            Movement();
+            //Movement();
 
-        }
-
-        if (movUp || movDown || movRight || movLeft)
-        {
-            contador += Time.deltaTime;
-        }
-
-        else
-        {
-            contador = 0;
         }
 
     }
@@ -159,88 +164,50 @@ public class JoyconMovement : MonoBehaviour
 
         gameObject.transform.rotation = orientation;
 
-    }
-
-    //Cutre código por probar con el contador
-    public bool isAMovement(int m)
-    {
-        
-        //Ariba = 0
-        if (m == 0)
+        //Si JoyconMovement devuelve que se ha pulsado el botón b cuenta 1 segundo
+        if (getPressed())
         {
-
-            if (movUp && contador >= 0.5)
+            //Suponemos que hay 50 fixedupdate por segundo
+            //Si el contador llega a 50 (uno segundo), indicará
+            //que se ponga a false el pulsado y que no entre aquí
+            //Y el contador vuelve a su estado inicial
+            if (cont >= 50)
             {
-                contador = 0;
-                movUp = false;
-                return true;
+                setNotPressed();
+                cont = 0;
+                isMove = true;
             }
+
+            //Si no ha pasado un segundo, guarda los valores de la acceleracion en el array
             else
             {
-                if(accel.x > 0 && accel.y > 0 && accel.z > 0)
-                {
-                    movUp = true;
-                    
-                }
-                else
-                {
-                    movUp = false;
-                }
+                cont++;
+
+                //Se guarda cada valor de la acceleracion
+                move[it++] = accel.x;
+                move[it++] = accel.y;
+                move[it++] = accel.z;
             }
         }
 
-        //Abajo = 1 
-        //else if (m == 1)
-        //{
-        //    if (contDown >= 5)
-        //    {
-        //        contDown = 0;
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        if (accel.x < 0 && accel.y < 0 && accel.z < 0)
-        //        {
-        //            contDown++;
-        //        }
-        //    }
-        //}
+    }
 
-        ////Derecha = 2
-        //else if (m == 2)
-        //{
-        //    if (contRight >= 5)
-        //    {
-        //        contRight = 0;
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        if (accel.x > 0 && accel.y > 0 && accel.z > 0)
-        //        {
-        //            contRight++;
-        //        }
-        //    }
-        //}
+    //Prueba con el contador
+    public int moveType()
+    {
+        if (isMove)
+        {
+            float[,] X = new float[1, 150];
+            for (int i = 0; i < 150; i++)
+            {
+                X[0, i] = move[i];
+            }
 
-        ////Izquierda = 3
-        //else if (m == 3)
-        //{
-        //    if (contLeft >= 5)
-        //    {
-        //        contLeft = 0;
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        if (accel.x > 0 && accel.y > 0 && accel.z > 0)
-        //        {
-        //            contLeft++;
-        //        }
-        //    }
-        //}
+            return red.Movement(X);
+        }
 
-        return false;
+        return -1;
+
     }
 
     //Devuelve la aceleración que tiene cuando se le pide

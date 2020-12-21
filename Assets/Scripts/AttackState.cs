@@ -33,10 +33,10 @@ public class AttackState : MonoBehaviour
        GameObject arrow = (GameObject)arrowQueue.Peek();
 
         //Revisa si hay una flecha en una dirección y se mueve el mando en la misma
-        if ((arrow.transform.rotation.z == 0 && sword.GetComponent<JoyconMovement>().isAMovement(0))        //Arriba
-            || (arrow.transform.rotation.z == 180 && sword.GetComponent<JoyconMovement>().isAMovement(1))   //Abajo
-            || (arrow.transform.rotation.z == -90 && sword.GetComponent<JoyconMovement>().isAMovement(2))   //Derecha
-            || (arrow.transform.rotation.z == 90 && sword.GetComponent<JoyconMovement>().isAMovement(3)))   //Izquierda
+        if ((arrow.transform.rotation.z == 0 && sword.GetComponent<JoyconMovement>().moveType() == 0)        //Arriba
+            || (arrow.transform.rotation.z == 180 && sword.GetComponent<JoyconMovement>().moveType() == 1)   //Abajo
+            || (arrow.transform.rotation.z == -90 && sword.GetComponent<JoyconMovement>().moveType() == 2)   //Derecha
+            || (arrow.transform.rotation.z == 90 && sword.GetComponent<JoyconMovement>().moveType() == 3))   //Izquierda
         {
             //Destruye el objeto y lo quita de la cola
             Destroy(arrow);
