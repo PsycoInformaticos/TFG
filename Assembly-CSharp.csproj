@@ -8,8 +8,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <ProjectGuid>{62873BB6-A352-5450-430A-56E3FCEBDD74}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -57,7 +56,6 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2019.3.1f1\Editor\Data\Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -80,14 +78,24 @@
     <Compile Include="Assets\Supercyan Character Pack Free Sample\Scripts\CameraLogic.cs" />
     <Compile Include="Assets\Supercyan Character Pack Free Sample\Scripts\Demo.cs" />
     <Compile Include="Assets\Supercyan Character Pack Free Sample\Scripts\SimpleCharacterControl.cs" />
-    <None Include="app.config" />
     <None Include="Assets\Swords\Swords\Shader\ToonSwords.shader" />
-    <None Include="packages.config" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/Documentos/UCM/TFG/TFG/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Barracuda.MacBLAS">
+      <HintPath>D:/Documentos/UCM/TFG/TFG/Library/ScriptAssemblies/Unity.Barracuda.MacBLAS.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst">
+      <HintPath>D:/Documentos/UCM/TFG/TFG/Library/ScriptAssemblies/Unity.Burst.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>D:/Documentos/UCM/TFG/TFG/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Barracuda.Editor">
+      <HintPath>D:/Documentos/UCM/TFG/TFG/Library/ScriptAssemblies/Unity.Barracuda.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Editor">
+      <HintPath>D:/Documentos/UCM/TFG/TFG/Library/ScriptAssemblies/Unity.Burst.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>D:/Documentos/UCM/TFG/TFG/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
@@ -98,11 +106,26 @@
     <Reference Include="Unity.Timeline">
       <HintPath>D:/Documentos/UCM/TFG/TFG/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Barracuda">
+      <HintPath>D:/Documentos/UCM/TFG/TFG/Library/ScriptAssemblies/Unity.Barracuda.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
       <HintPath>D:/Documentos/UCM/TFG/TFG/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Barracuda.iOSBLAS">
+      <HintPath>D:/Documentos/UCM/TFG/TFG/Library/ScriptAssemblies/Unity.Barracuda.iOSBLAS.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>D:/Documentos/UCM/TFG/TFG/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Barracuda.BurstBLAS">
+      <HintPath>D:/Documentos/UCM/TFG/TFG/Library/ScriptAssemblies/Unity.Barracuda.BurstBLAS.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics">
+      <HintPath>D:/Documentos/UCM/TFG/TFG/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics.Editor">
+      <HintPath>D:/Documentos/UCM/TFG/TFG/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>D:/Documentos/UCM/TFG/TFG/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
@@ -286,6 +309,12 @@
     </Reference>
     <Reference Include="UnityEngine.XRModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.1f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf">
+      <HintPath>D:/Documentos/UCM/TFG/TFG/Library/PackageCache/com.unity.barracuda@1.0.4/Barracuda/Runtime/Plugins/ProtoBuffer/Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Unsafe">
+      <HintPath>D:/Documentos/UCM/TFG/TFG/Library/PackageCache/com.unity.burst@1.3.4/Unity.Burst.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.1f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -494,6 +523,9 @@
     <Reference Include="System.Runtime.Serialization.Json">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.1f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.Serialization.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization.Primitives">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.1f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.Serialization.Primitives.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization.Xml">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.1f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.Serialization.Xml.dll</HintPath>
     </Reference>
@@ -541,6 +573,9 @@
     </Reference>
     <Reference Include="System.Threading.Tasks.Parallel">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.1f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Threading.Tasks.Parallel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Thread">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.1f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Threading.Thread.dll</HintPath>
     </Reference>
     <Reference Include="System.Threading.ThreadPool">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.1f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Threading.ThreadPool.dll</HintPath>

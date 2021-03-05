@@ -116,7 +116,7 @@ model.add(Dropout(0.2))
 model.add(Dense(nClasses, activation='softmax'))
 
 
-epochs = 100;
+epochs = 100
 model.compile(optimizer='rmsprop', loss='categorical_crossentropy', metrics=['accuracy'])
 history = model.fit(train_data, train_labels_one_hot, batch_size = 256, epochs=epochs, verbose=1,
                     validation_data=(test_data, test_labels_one_hot))
