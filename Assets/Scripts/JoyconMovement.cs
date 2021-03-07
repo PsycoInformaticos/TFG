@@ -16,6 +16,7 @@ public class JoyconMovement : MonoBehaviour
     public float[] stick;
     public Vector3 gyro;
     public Vector3 accel;
+    public Vector3 lastAccel;
     public int jcIndex = 0;
     public Quaternion orientation;
 
@@ -24,7 +25,6 @@ public class JoyconMovement : MonoBehaviour
 
     //Variables para recoger movimientos
     float cont;
-    bool movUp, movDown, movRight, movLeft;
 
     //Cada movimiento tiene 150 valores de aceleracion (50 de 3 ejes cada uno)
     float[] move = new float[150];
@@ -45,6 +45,7 @@ public class JoyconMovement : MonoBehaviour
 
         gyro = new Vector3(0, 0, 0);
         accel = new Vector3(0, 0, 0);
+        lastAccel = new Vector3(0, 0, 0);
         // get the public Joycon object attached to the JoyconManager in scene
         joycons = JoyconManager.Instance.j;
         if (joycons.Count < jcIndex + 1)
@@ -52,9 +53,7 @@ public class JoyconMovement : MonoBehaviour
             Destroy(gameObject);
         }
 
-        //contUp = contDown = contRight = contLeft = 0.0f;
         cont = 0.0f;
-        movUp = movDown = movRight = movLeft = false;
 
         //Asignacion de cada mando a un objeto
         j = joycons[jcIndex];
@@ -111,22 +110,15 @@ public class JoyconMovement : MonoBehaviour
         // GetButtonDown checks if a button has been pressed (not held)
         if (j.GetButtonDown(Joycon.Button.PLUS))
         {
-            Debug.Log("Plus button pressed");
-
             // Joycon has no magnetometer, so it cannot accurately determine its yaw value. Joycon.Recenter allows the user to reset the yaw value.
             j.Recenter();
         }
-        // GetButtonDown checks if a button has been released
-        if (j.GetButtonUp(Joycon.Button.PLUS))
-        {
-            Debug.Log("Plus released");
-            Debug.Log(accel);
-        }
+        
 
         //Al pulsar el boton B (o abajo en el izquierdo) se activa el booleano para poder recoger la aceleracion
         if (j.GetButtonDown(0))
         {
-            pressed = true;
+            //pressed = true;
         }
     }
 
@@ -139,18 +131,22 @@ public class JoyconMovement : MonoBehaviour
         gyro = j.GetGyro();
 
         // Accel values:  x, y, z axis values (in Gs)
+        lastAccel = accel;
         accel = j.GetAccel();
 
         orientation.x = j.GetVector().x;
         orientation.y = j.GetVector().y;
         orientation.w = j.GetVector().w;
+
         //Al sumarle la y a la z el gameObject se coloca en la posición que tiene el mando. Actúan sobre el mismo eje de forma contraria
         orientation.z = j.GetVector().z + j.GetVector().y;
 
         gameObject.transform.rotation = orientation;
 
+        Debug.Log(accel);
+
         //Si JoyconMovement devuelve que se ha pulsado el botón b cuenta 1 segundo
-        if (getPressed())
+        if (accel != lastAccel)
         {
             //Suponemos que hay 50 fixedupdate por segundo
             //Si el contador llega a 50 (uno segundo), indicará

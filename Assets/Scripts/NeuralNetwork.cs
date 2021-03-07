@@ -23,26 +23,32 @@ public class NeuralNetwork : MonoBehaviour
     {
         int move = -1;
 
-        //Carga el modelo ya entrenado
-        //string model_path = Application.dataPath + @"\Red_Neuronal\Modelo\model.json";
-        //string weights_path = Application.dataPath + @"\Red_Neuronal\Modelo\model.h5";
-
-        //var model = Sequential.ModelFromJson(File.ReadAllText(model_path));
-        //model.LoadWeight(weights_path);
-
-        //Predice el tipo de un movimiento dado y devuelve el valor
-        //var ynew = model.Predict(Xnew);
-
-        //move = (int)ynew[0];
-
-        Tensor input = new Tensor(1, 1, 150, 1, Xnew);
+        // Batch = 1 por entrar un solo movimiento
+        // Height = 1 ya que es un vector unidimensional
+        // Width = 150 es la longitud de cada vector de movimiento
+        // Channels hace referencia a los valores de los colores, por eso es 0 al no ser una imagen
+        // Luego pasamos el propio vector de movimiento (X nueva para averiguar la Y)
+        Tensor input = new Tensor(1, 1, 150, 0, Xnew);
         worker.Execute(input);
 
         Tensor output = worker.PeekOutput();
-        Debug.Log(output.DataToString());
-        
-        //TODO: hacer dispose de todo lo usado (worker, output...) cuando ya no se use
+        string data = output.DataToString();
+        //Debug.Log(data);
+
+        int pos = 0;
+        for (int i = 0; i < data.Length; i++)
+        {
+            char c = data[i];
+            if (c == '1' && ((i < data.Length - 1 && data[i + 1] == ' ') || i == data.Length - 1))
+            {
+                move = pos;
+            }
+            else if (c == ' ')
+                pos++;
+        }
+
         input.Dispose();
+        output.Dispose();
 
         return move;
     }
