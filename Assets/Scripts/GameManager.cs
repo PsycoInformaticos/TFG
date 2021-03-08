@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
-    public GameObject PlayerHealthbar;
+    //public GameObject PlayerHealthbar;
     public GameObject EnemyHealthbar;
 
     bool flecha;
@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
         //Esto es para debugear que la vida de cada personaje baja y salen flechas aleatorias
         if (Input.GetButtonDown("Fire1")) //E
         {
-            PlayerHealthbar.GetComponent<Healthbar>().DecreaseHealth();
+            //PlayerHealthbar.GetComponent<Healthbar>().DecreaseHealth();
 
         }
 

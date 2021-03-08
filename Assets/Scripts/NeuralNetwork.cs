@@ -50,6 +50,7 @@ public class NeuralNetwork : MonoBehaviour
         input.Dispose();
         output.Dispose();
 
+        //Debug.Log(move);
         return move;
     }
 

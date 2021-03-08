@@ -9,7 +9,7 @@ public class AttackState : MonoBehaviour
     public Canvas canvas;
 
     public GameObject sword;
-    public GameObject PlayerHealthbar;
+    //public GameObject PlayerHealthbar;
     public GameObject EnemyHealthbar;
 
     Vector3 accel;
@@ -30,7 +30,10 @@ public class AttackState : MonoBehaviour
     {
         //Se generará nueva flecha por tiempo
 
-       GameObject arrow = (GameObject)arrowQueue.Peek();
+        GameObject arrow = (GameObject)arrowQueue.Peek();
+
+        //Esta rotacion da un valor 0 o 1, hay que buscar otra forma
+        Debug.Log("Rotacion: " + arrow.transform.localRotation.z);
 
         //Revisa si hay una flecha en una dirección y se mueve el mando en la misma
         if ((arrow.transform.rotation.z == 0 && sword.GetComponent<JoyconMovement>().moveType() == 0)        //Arriba
@@ -53,7 +56,7 @@ public class AttackState : MonoBehaviour
         Vector3 posArrow = new Vector3(canvas.transform.position.x + 100, canvas.transform.position.y, 0);
 
         //Depends on the number, will apear an arrrow in diferent direction. Will be some direction more, but first only 4 for trying
-        int randomDirection = /*Random.Range(1, 4);*/ 0;
+        int randomDirection = Random.Range(1, 4);
         int rotationZ = 0;
         //Select the direction depends on the random number
         switch(randomDirection){

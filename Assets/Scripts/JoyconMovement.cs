@@ -6,6 +6,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class JoyconMovement : MonoBehaviour
 {
@@ -143,11 +144,20 @@ public class JoyconMovement : MonoBehaviour
 
         gameObject.transform.rotation = orientation;
 
-        Debug.Log(accel);
+        double nX = Math.Round(accel.x, 2);
+        double aX = Math.Round(lastAccel.x, 2);
+        double nY = Math.Round(accel.y, 2);
+        double aY = Math.Round(lastAccel.y, 2);
+        double nZ = Math.Round(accel.z, 2);
+        double aZ = Math.Round(lastAccel.z, 2);
 
         //Si JoyconMovement devuelve que se ha pulsado el botón b cuenta 1 segundo
-        if (accel != lastAccel)
+        if ((nX != aX) && (nY != aY) && (nZ != aZ))
         {
+            
+            //Debug.Log("Accel: " + nX + " " + nY + " " + nZ);
+            //Debug.Log("Accel anterior: " + aX + " " + aY + " " + aZ);
+
             //Suponemos que hay 50 fixedupdate por segundo
             //Si el contador llega a 50 (uno segundo), indicará
             //que se ponga a false el pulsado y que no entre aquí
