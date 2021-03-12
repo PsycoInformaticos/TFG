@@ -8,7 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{62873BB6-A352-5450-430A-56E3FCEBDD74}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -79,6 +80,7 @@
     <Compile Include="Assets\Supercyan Character Pack Free Sample\Scripts\Demo.cs" />
     <Compile Include="Assets\Supercyan Character Pack Free Sample\Scripts\SimpleCharacterControl.cs" />
     <None Include="Assets\Swords\Swords\Shader\ToonSwords.shader" />
+    <None Include="packages.config" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/Documentos/UCM/TFG/TFG/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
