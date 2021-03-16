@@ -320,6 +320,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74464557ffc25574aa24dd2f4b805efd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  posMaps:
+  - {fileID: 2014688692}
+  - {fileID: 882027154}
+  - {fileID: 917881987}
+  - {fileID: 856469715}
 --- !u!1 &917881987
 GameObject:
   m_ObjectHideFlags: 0

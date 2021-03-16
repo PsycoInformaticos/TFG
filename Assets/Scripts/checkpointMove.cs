@@ -6,8 +6,7 @@ using UnityEngine;
 public class checkpointMove : MonoBehaviour
 {
     private int pos;
-    private int maxPos;
-    private string[] posMaps;
+    public GameObject[] posMaps;
 
     //private Transform target;
     //private float speed = 20f;
@@ -16,11 +15,6 @@ public class checkpointMove : MonoBehaviour
     private void Start()
     {
         //Leemos el archivo para saber cuantos puntos hay en cada mapa
-        StreamReader reader = new StreamReader("prueba.txt");
-        posMaps = reader.ReadLine().Split(',');
-        maxPos = int.Parse(posMaps[0]);
-        reader.Close();
-        Debug.Log("Text: " + maxPos);
         pos = 0;
         //Fijamos el primer punto para empezar a movernos hacia el
         transform.LookAt(GameObject.Find("punto0").transform);
@@ -31,11 +25,9 @@ public class checkpointMove : MonoBehaviour
     {
         //actualizamos el contador de posicion y mientras haya posiciones a las que ir, cambiamos la direccion. Si no hay mas mensaje de que se acabo
         pos++;
-        if (pos < maxPos)
+        if (pos < posMaps.Length)
         {
-            string nextpos = "punto" + pos;
-
-            transform.LookAt(GameObject.Find(nextpos).transform);
+            transform.LookAt(posMaps[pos].transform);
 
         }
         else
