@@ -34,7 +34,7 @@ public class AttackState : MonoBehaviour
 
         //Cogemos la rotacion con EulerAngles para que salga en un valor de 0 a 360
         int rotation = (int)arrow.transform.eulerAngles.z;
-        Debug.Log("Rotacion: " + rotation);
+        //Debug.Log("Rotacion: " + rotation);
 
         //Revisa si hay una flecha en una dirección y se mueve el mando en la misma
         if ((rotation == 0 && sword.GetComponent<JoyconMovement>().moveType() == 0)        //Arriba

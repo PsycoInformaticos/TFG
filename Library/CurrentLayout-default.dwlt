@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 875, y: 300}
+  m_MinSize: {x: 875, y: 492}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -114,10 +114,10 @@ MonoBehaviour:
     y: 30
     width: 1536
     height: 731
-  m_MinSize: {x: 908, y: 421}
+  m_MinSize: {x: 908, y: 442}
   m_MaxSize: {x: 22003, y: 10021}
   vertical: 0
-  controlID: 113
+  controlID: 158
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -139,10 +139,10 @@ MonoBehaviour:
     y: 0
     width: 679
     height: 731
-  m_MinSize: {x: 201, y: 421}
-  m_MaxSize: {x: 4001, y: 8021}
+  m_MinSize: {x: 201, y: 442}
+  m_MaxSize: {x: 4001, y: 8042}
   vertical: 1
-  controlID: 34
+  controlID: 59
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -162,8 +162,8 @@ MonoBehaviour:
     y: 0
     width: 679
     height: 375
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -479,7 +479,7 @@ MonoBehaviour:
   m_Size:
     m_Target: 330.41223
     speed: 2
-    m_Value: 330.41226
+    m_Value: 330.41223
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -533,23 +533,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 78400000
+      m_SelectedIDs: 5e2f0000
       m_LastClickedID: 0
-      m_ExpandedIDs: 6efbffff28360000
+      m_ExpandedIDs: 6efbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: EnemyHealth
-        m_OriginalName: EnemyHealth
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 13856
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 9}
       m_SearchString: 
@@ -598,20 +598,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs
+    - Assets/Scripts
   m_ViewMode: 1
   m_StartGridSize: 46
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets/Scripts
   m_LastFoldersGridSize: 46
   m_LastProjectPath: D:\Documentos\UCM\TFG\TFG
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 00370000
-    m_LastClickedID: 14080
-    m_ExpandedIDs: 00000000ca360000cc360000ce360000d036000000ca9a3b
+    m_SelectedIDs: 12370000
+    m_LastClickedID: 14098
+    m_ExpandedIDs: 00000000d4360000d6360000d8360000da36000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -639,7 +639,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000ca360000cc360000ce360000d0360000
+    m_ExpandedIDs: 00000000d4360000d6360000d8360000da360000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

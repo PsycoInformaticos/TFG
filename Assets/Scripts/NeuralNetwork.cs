@@ -33,7 +33,7 @@ public class NeuralNetwork : MonoBehaviour
 
         Tensor output = worker.PeekOutput();
         string data = output.DataToString();
-        //Debug.Log(data);
+        Debug.Log(data);
 
         int pos = 0;
         for (int i = 0; i < data.Length; i++)
@@ -50,7 +50,7 @@ public class NeuralNetwork : MonoBehaviour
         input.Dispose();
         output.Dispose();
 
-        //Debug.Log(move);
+        Debug.Log(move);
         return move;
     }
 

@@ -144,19 +144,16 @@ public class JoyconMovement : MonoBehaviour
 
         gameObject.transform.rotation = orientation;
 
-        double nX = Math.Round(accel.x, 2);
-        double aX = Math.Round(lastAccel.x, 2);
-        double nY = Math.Round(accel.y, 2);
-        double aY = Math.Round(lastAccel.y, 2);
-        double nZ = Math.Round(accel.z, 2);
-        double aZ = Math.Round(lastAccel.z, 2);
+        double nX = Math.Round(accel.x, 3);
+        double aX = Math.Round(lastAccel.x, 3);
+        double nY = Math.Round(accel.y, 3);
+        double aY = Math.Round(lastAccel.y, 3);
+        double nZ = Math.Round(accel.z, 3);
+        double aZ = Math.Round(lastAccel.z, 3);
 
         //Si JoyconMovement devuelve que se ha pulsado el botón b cuenta 1 segundo
         if ((nX != aX) && (nY != aY) && (nZ != aZ))
         {
-            
-            //Debug.Log("Accel: " + nX + " " + nY + " " + nZ);
-            //Debug.Log("Accel anterior: " + aX + " " + aY + " " + aZ);
 
             //Suponemos que hay 50 fixedupdate por segundo
             //Si el contador llega a 50 (uno segundo), indicará
@@ -169,13 +166,6 @@ public class JoyconMovement : MonoBehaviour
                 it = 0;
                 isMove = true;
 
-                float[] X = new float[150];
-                for (int i = 0; i < 150; i++)
-                {
-                    X[i] = move[i];
-                }
-
-                int n = red.GetComponent<NeuralNetwork>().Movement(X);
             }
 
             //Si no ha pasado un segundo, guarda los valores de la acceleracion en el array
@@ -188,6 +178,12 @@ public class JoyconMovement : MonoBehaviour
                 move[it++] = accel.y;
                 move[it++] = accel.z;
             }
+        }
+        else
+        {
+            //cont = 0;
+            //it = 0;
+            //isMove = false;
         }
 
     }
