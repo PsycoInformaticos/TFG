@@ -26,11 +26,13 @@ public class JoyconMovement : MonoBehaviour
 
     //Variables para recoger movimientos
     float cont;
+    float espera;
 
     //Cada movimiento tiene 150 valores de aceleracion (50 de 3 ejes cada uno)
     float[] move = new float[150];
     int it;                          //iterador de move
-    bool isMove;
+
+   Queue<int> moves = new Queue<int>();
 
     public GameObject red;
 
@@ -41,12 +43,10 @@ public class JoyconMovement : MonoBehaviour
     void Start()
     {
         pressed = false;
-        isMove = false;
         it = 0;
 
         gyro = new Vector3(0, 0, 0);
         accel = new Vector3(0, 0, 0);
-        lastAccel = new Vector3(0, 0, 0);
         // get the public Joycon object attached to the JoyconManager in scene
         joycons = JoyconManager.Instance.j;
         if (joycons.Count < jcIndex + 1)
@@ -55,6 +55,7 @@ public class JoyconMovement : MonoBehaviour
         }
 
         cont = 0.0f;
+        espera = 25f;
 
         //Asignacion de cada mando a un objeto
         j = joycons[jcIndex];
@@ -132,7 +133,6 @@ public class JoyconMovement : MonoBehaviour
         gyro = j.GetGyro();
 
         // Accel values:  x, y, z axis values (in Gs)
-        lastAccel = accel;
         accel = j.GetAccel();
 
         orientation.x = j.GetVector().x;
@@ -144,15 +144,8 @@ public class JoyconMovement : MonoBehaviour
 
         gameObject.transform.rotation = orientation;
 
-        double nX = Math.Round(accel.x, 3);
-        double aX = Math.Round(lastAccel.x, 3);
-        double nY = Math.Round(accel.y, 3);
-        double aY = Math.Round(lastAccel.y, 3);
-        double nZ = Math.Round(accel.z, 3);
-        double aZ = Math.Round(lastAccel.z, 3);
-
-        //Si JoyconMovement devuelve que se ha pulsado el botón b cuenta 1 segundo
-        if ((nX != aX) && (nY != aY) && (nZ != aZ))
+        //Latencia de medio segundo entre la recogida de un movimiento y otro
+        if (espera >= 25)
         {
 
             //Suponemos que hay 50 fixedupdate por segundo
@@ -164,7 +157,16 @@ public class JoyconMovement : MonoBehaviour
                 setNotPressed();
                 cont = 0;
                 it = 0;
-                isMove = true;
+
+                float[] X = new float[150];
+                for (int i = 0; i < 150; i++)
+                {
+                    X[i] = move[i];
+                }
+
+                moves.Enqueue(red.GetComponent<NeuralNetwork>().Movement(X));
+
+                espera = 0f;
 
             }
 
@@ -178,31 +180,46 @@ public class JoyconMovement : MonoBehaviour
                 move[it++] = accel.y;
                 move[it++] = accel.z;
             }
+
         }
-        else
-        {
-            //cont = 0;
-            //it = 0;
-            //isMove = false;
-        }
+        else espera++;
+       
 
     }
 
     //Prueba con el contador
     public int moveType()
     {
-        if (isMove)
-        {
-            float[] X = new float[150];
-            for (int i = 0; i < 150; i++)
-            {
-                X[i] = move[i];
-            }
 
-            return red.GetComponent<NeuralNetwork>().Movement(X);
+        int[] dirRepetidas = new int[] { 0, 0, 0, 0 };
+
+        int vueltas = moves.Count;
+        for (int i = 0; i < vueltas; i++)
+        {
+            int peek = moves.Peek(); moves.Dequeue();
+            if (peek == 0) dirRepetidas[0]++;
+            else if (peek == 1) dirRepetidas[1]++;
+            else if (peek == 2) dirRepetidas[2]++;
+            else if (peek == 3) dirRepetidas[3]++;
         }
 
-        return -1;
+        int t = dirRepetidas[0];
+        //Debug.Log(0 + " -> " + dirRepetidas[0]);
+        int type = 0;
+        for(int j = 1; j < dirRepetidas.Length; j++)
+        {
+            //Debug.Log(j + " -> " + dirRepetidas[j]);
+
+            if (dirRepetidas[j] > t)
+            {
+                t = dirRepetidas[j];
+                type = j;
+            }
+        }
+
+        Debug.Log(type);
+
+        return type;
 
     }
 

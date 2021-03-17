@@ -33,24 +33,25 @@ public class NeuralNetwork : MonoBehaviour
 
         Tensor output = worker.PeekOutput();
         string data = output.DataToString();
-        Debug.Log(data);
+        //Debug.Log(data);
 
-        int pos = 0;
-        for (int i = 0; i < data.Length; i++)
+        float f1 = output[0];
+        move = 0;
+        for (int i = 1; i < output.length; i++)
         {
-            char c = data[i];
-            if (c == '1' && ((i < data.Length - 1 && data[i + 1] == ' ') || i == data.Length - 1))
+            float f2 = output[i];
+
+            if (f1 < f2)
             {
-                move = pos;
+                f1 = f2;
+                move = i;
             }
-            else if (c == ' ')
-                pos++;
         }
 
         input.Dispose();
         output.Dispose();
 
-        Debug.Log(move);
+        //Debug.Log(move);
         return move;
     }
 
