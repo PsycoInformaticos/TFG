@@ -109,19 +109,18 @@ public class JoyconMovement : MonoBehaviour
     void Input()
     {
         Joycon j = joycons[jcIndex];
-        // GetButtonDown checks if a button has been pressed (not held)
-        if (j.GetButtonDown(Joycon.Button.PLUS))
+
+        //Al pulsar el boton PLUS o MINUS (depende del mando que se este usando) 
+        if (j.GetButtonDown(Joycon.Button.PLUS) || j.GetButtonDown(Joycon.Button.MINUS))
         {
+            //Activa el booleano para poder recoger la aceleracion en ColletData
+            pressed = true;
+
             // Joycon has no magnetometer, so it cannot accurately determine its yaw value. Joycon.Recenter allows the user to reset the yaw value.
             j.Recenter();
-        }
-        
 
-        //Al pulsar el boton B (o abajo en el izquierdo) se activa el booleano para poder recoger la aceleracion
-        if (j.GetButtonDown(0))
-        {
-            //pressed = true;
         }
+
     }
 
     void Movement()
@@ -147,7 +146,7 @@ public class JoyconMovement : MonoBehaviour
         //Latencia de medio segundo entre la recogida de un movimiento y otro
         if (espera >= 25)
         {
-
+            
             //Suponemos que hay 50 fixedupdate por segundo
             //Si el contador llega a 50 (uno segundo), indicará
             //que se ponga a false el pulsado y que no entre aquí
@@ -180,6 +179,7 @@ public class JoyconMovement : MonoBehaviour
                 move[it++] = accel.y;
                 move[it++] = accel.z;
             }
+           
 
         }
         else espera++;
@@ -190,34 +190,37 @@ public class JoyconMovement : MonoBehaviour
     //Prueba con el contador
     public int moveType()
     {
-
+        int type = -1;
         int[] dirRepetidas = new int[] { 0, 0, 0, 0 };
 
         int vueltas = moves.Count;
-        for (int i = 0; i < vueltas; i++)
+        if (vueltas > 0)
         {
-            int peek = moves.Peek(); moves.Dequeue();
-            if (peek == 0) dirRepetidas[0]++;
-            else if (peek == 1) dirRepetidas[1]++;
-            else if (peek == 2) dirRepetidas[2]++;
-            else if (peek == 3) dirRepetidas[3]++;
-        }
-
-        int t = dirRepetidas[0];
-        //Debug.Log(0 + " -> " + dirRepetidas[0]);
-        int type = 0;
-        for(int j = 1; j < dirRepetidas.Length; j++)
-        {
-            //Debug.Log(j + " -> " + dirRepetidas[j]);
-
-            if (dirRepetidas[j] > t)
+            for (int i = 0; i < vueltas; i++)
             {
-                t = dirRepetidas[j];
-                type = j;
+                int peek = moves.Peek(); moves.Dequeue();
+                if (peek == 0) dirRepetidas[0]++;
+                else if (peek == 1) dirRepetidas[1]++;
+                else if (peek == 2) dirRepetidas[2]++;
+                else if (peek == 3) dirRepetidas[3]++;
+            }
+
+            int t = dirRepetidas[0];
+            //Debug.Log(0 + " -> " + dirRepetidas[0]);
+            type = 0;
+            for (int j = 1; j < dirRepetidas.Length; j++)
+            {
+                //Debug.Log(j + " -> " + dirRepetidas[j]);
+
+                if (dirRepetidas[j] > t)
+                {
+                    t = dirRepetidas[j];
+                    type = j;
+                }
             }
         }
 
-        Debug.Log(type);
+        //Debug.Log(type);
 
         return type;
 

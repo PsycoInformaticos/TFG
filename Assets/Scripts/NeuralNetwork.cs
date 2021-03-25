@@ -32,7 +32,7 @@ public class NeuralNetwork : MonoBehaviour
         worker.Execute(input);
 
         Tensor output = worker.PeekOutput();
-        string data = output.DataToString();
+        //string data = output.DataToString();
         //Debug.Log(data);
 
         float f1 = output[0];
