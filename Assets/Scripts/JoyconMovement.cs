@@ -21,12 +21,15 @@ public class JoyconMovement : MonoBehaviour
     public int jcIndex = 0;
     public Quaternion orientation;
 
-    public GameObject sword;
-    //public GameObject shield;
+    public GameObject rightController;
+    //public GameObject leftController;
 
     //Variables para recoger movimientos
     float cont;
-    float espera;
+
+    //Latencia
+    public float timeWait;
+    float contWait;
 
     //Cada movimiento tiene 150 valores de aceleracion (50 de 3 ejes cada uno)
     float[] move = new float[150];
@@ -55,12 +58,12 @@ public class JoyconMovement : MonoBehaviour
         }
 
         cont = 0.0f;
-        espera = 25f;
+        contWait = timeWait;
 
         //Asignacion de cada mando a un objeto
         j = joycons[jcIndex];
 
-        if (gameObject == sword)
+        if (gameObject == rightController)
         {
             if (!joycons[0].isLeft)
             {
@@ -73,7 +76,7 @@ public class JoyconMovement : MonoBehaviour
 
         }
 
-        //else if (gameObject == shield)
+        //else if (gameObject == leftController)
         //{
         //    if (joycons[0].isLeft)
         //    {
@@ -90,6 +93,8 @@ public class JoyconMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        JoyconUpdate();
+
         Movement();
 
     }
@@ -101,7 +106,7 @@ public class JoyconMovement : MonoBehaviour
         if (joycons.Count > 0)
         {
             Input();
-
+            Pointer();
         }
 
     }
@@ -123,15 +128,15 @@ public class JoyconMovement : MonoBehaviour
 
     }
 
-    void Movement()
+    void JoyconUpdate()
     {
-
         stick = j.GetStick();
 
         // Gyro values: x, y, z axis values (in radians per second)
         gyro = j.GetGyro();
 
         // Accel values:  x, y, z axis values (in Gs)
+        lastAccel = accel;
         accel = j.GetAccel();
 
         orientation.x = j.GetVector().x;
@@ -142,9 +147,13 @@ public class JoyconMovement : MonoBehaviour
         orientation.z = j.GetVector().z + j.GetVector().y;
 
         gameObject.transform.rotation = orientation;
+    }
+
+    void Movement()
+    {
 
         //Latencia de medio segundo entre la recogida de un movimiento y otro
-        if (espera >= 25)
+        if (contWait >= timeWait)
         {
             
             //Suponemos que hay 50 fixedupdate por segundo
@@ -165,7 +174,7 @@ public class JoyconMovement : MonoBehaviour
 
                 moves.Enqueue(red.GetComponent<NeuralNetwork>().Movement(X));
 
-                espera = 0f;
+                contWait = 0f;
 
             }
 
@@ -182,8 +191,22 @@ public class JoyconMovement : MonoBehaviour
            
 
         }
-        else espera++;
+        else contWait++;
        
+
+    }
+
+    void Pointer()
+    {
+        //if ((float)Math.Round(accel.x, 2) != (float)Math.Round(lastAccel.x, 2))
+        //{
+        //    transform.position += new Vector3((float)Math.Round(accel.x, 2), 0, 0);
+        //}
+
+        //if ((float)Math.Round(accel.y, 2) != (float)Math.Round(lastAccel.y, 2))
+        //    transform.position -= new Vector3(0, (float)Math.Round(accel.y, 2), 0);
+
+        transform.position += new Vector3((float)Math.Round(gyro.x, 2), (float)Math.Round(gyro.y, 2), 0);
 
     }
 

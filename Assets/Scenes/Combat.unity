@@ -766,6 +766,16 @@ PrefabInstance:
       propertyPath: red
       value: 
       objectReference: {fileID: 1345687165}
+    - target: {fileID: 412238370011262237, guid: a975b2b0ddf06544da542a913cccbece,
+        type: 3}
+      propertyPath: rightController
+      value: 
+      objectReference: {fileID: 845746361}
+    - target: {fileID: 412238370011262237, guid: a975b2b0ddf06544da542a913cccbece,
+        type: 3}
+      propertyPath: timeWait
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 412238371675546886, guid: a975b2b0ddf06544da542a913cccbece,
         type: 3}
       propertyPath: m_LocalPosition.x
