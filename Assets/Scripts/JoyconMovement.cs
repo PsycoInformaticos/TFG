@@ -21,6 +21,9 @@ public class JoyconMovement : MonoBehaviour
     public int jcIndex = 0;
     public Quaternion orientation;
 
+    //arrows, runer, drawing
+    public string minigame;
+
     public GameObject rightController;
     //public GameObject leftController;
 
@@ -95,7 +98,8 @@ public class JoyconMovement : MonoBehaviour
     {
         JoyconUpdate();
 
-        Movement();
+        if(minigame == "arrows")
+            Movement();
 
     }
 
@@ -106,7 +110,9 @@ public class JoyconMovement : MonoBehaviour
         if (joycons.Count > 0)
         {
             Input();
-            Pointer();
+
+            if(minigame == "drawing")
+                Pointer();
         }
 
     }
@@ -162,7 +168,6 @@ public class JoyconMovement : MonoBehaviour
             //Y el contador vuelve a su estado inicial
             if (cont >= 50)
             {
-                setNotPressed();
                 cont = 0;
                 it = 0;
 
@@ -184,11 +189,15 @@ public class JoyconMovement : MonoBehaviour
                 cont++;
 
                 //Se guarda cada valor de la acceleracion
-                move[it++] = accel.x;
-                move[it++] = accel.y;
-                move[it++] = accel.z;
+                //move[it++] = accel.x;
+                //move[it++] = accel.y;
+                //move[it++] = accel.z;
+
+                move[it++] = gyro.x;
+                move[it++] = gyro.y;
+                move[it++] = gyro.z;
             }
-           
+
 
         }
         else contWait++;
@@ -253,6 +262,12 @@ public class JoyconMovement : MonoBehaviour
     public Vector3 getAccel()
     {
         return accel;
+    }
+
+    //Devuelve el gyro que tiene cuando se le pide
+    public Vector3 getGyro()
+    {
+        return gyro;
     }
 
     //Devuelve si ha sido pulsada la A del mando o no para recoger datos

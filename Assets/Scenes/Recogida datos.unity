@@ -264,7 +264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 845746361}
-  accelText: {fileID: 1750018966}
+  dataText: {fileID: 1750018966}
 --- !u!1 &845746361 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 412238371675846950, guid: a975b2b0ddf06544da542a913cccbece,
@@ -547,7 +547,7 @@ GameObject:
   - component: {fileID: 1750018967}
   - component: {fileID: 1750018966}
   m_Layer: 5
-  m_Name: Accel
+  m_Name: Data
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -603,7 +603,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Accel
+  m_Text: Data
 --- !u!222 &1750018967
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -695,6 +695,11 @@ PrefabInstance:
       propertyPath: rightController
       value: 
       objectReference: {fileID: 845746361}
+    - target: {fileID: 412238370011262237, guid: a975b2b0ddf06544da542a913cccbece,
+        type: 3}
+      propertyPath: minigame
+      value: none
+      objectReference: {fileID: 0}
     - target: {fileID: 412238371675546886, guid: a975b2b0ddf06544da542a913cccbece,
         type: 3}
       propertyPath: m_LocalPosition.x

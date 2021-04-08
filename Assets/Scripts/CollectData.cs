@@ -6,59 +6,53 @@ using UnityEngine.UI;
 public class CollectData : MonoBehaviour
 {
     public GameObject sword;
-    public Text accelText;
+    public Text dataText;
 
-    Vector3 accel;
+    Vector3 vData;
     float cont;
 
     Data dataFile;
 
-    bool collectingData;
-
     private void Start()
     {
-        accel = new Vector3(0, 0, 0);
-        cont = 0;
+        vData = new Vector3(0, 0, 0);
+        cont = 1;
         dataFile = new Data();
-
-        collectingData = false;
     }
 
     private void FixedUpdate()
     {
-        if (collectingData)
+
+        //Si JoyconMovement devuelve que se ha pulsado el botón b cuenta 1 segundo
+        if (sword.GetComponent<JoyconMovement>().getPressed())
         {
+            //Se guarda la aceleración en cada momento que se detecte como botón pulsado
+            //vData = sword.GetComponent<JoyconMovement>().getAccel();
+            vData = sword.GetComponent<JoyconMovement>().getGyro();
 
-            //Si JoyconMovement devuelve que se ha pulsado el botón b cuenta 1 segundo
-            if (sword.GetComponent<JoyconMovement>().getPressed())
+            //Suponemos que hay 50 fixedupdate por segundo
+            //Si el contador llega a 50 (uno segundo), le indicará a JoyconMovement
+            //que ponga a false el pulsado y que no entre aquí
+            //Además señala que es la última linea y manda true para que no escriba coma al final
+            //Y el contador vuelve a su estado inicial
+            if (cont >= 50)
             {
-                //Se guarda la aceleración en cada momento que se detecte como botón pulsado
-                accel = sword.GetComponent<JoyconMovement>().getAccel();
+                sword.GetComponent<JoyconMovement>().setNotPressed();
+                dataFile.Write(vData.x, vData.y, vData.z, true);
+                cont = 1;
+            }
 
-                //Suponemos que hay 50 fixedupdate por segundo
-                //Si el contador llega a 50 (uno segundo), le indicará a JoyconMovement
-                //que ponga a false el pulsado y que no entre aquí
-                //Además señala que es la última linea y manda true para que no escriba coma al final
-                //Y el contador vuelve a su estado inicial
-                if (cont >= 50)
-                {
-                    sword.GetComponent<JoyconMovement>().setNotPressed();
-                    dataFile.Write(accel.x, accel.y, accel.z, true);
-                    cont = 0;
-                }
+            //Si no ha pasado un segundo, sigue escribiendo los distintos valores
+            //de la aceleración
+            else
+            {
+                cont++;
+                dataText.text = vData.ToString();
+                dataFile.Write(vData.x, vData.y, vData.z, false);
 
-                //Si no ha pasado un segundo, sigue escribiendo los distintos valores
-                //de la aceleración
-                else
-                {
-                    cont++;
-                    accelText.text = accel.ToString();
-                    dataFile.Write(accel.x, accel.y, accel.z, false);
-
-
-                }
             }
         }
+        
     }
 
 }

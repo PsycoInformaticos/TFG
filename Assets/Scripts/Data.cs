@@ -17,7 +17,7 @@ public class Data
 
         fileWriter.AutoFlush = true;
 
-        Init();
+        //Init();
 
     }
 
@@ -45,14 +45,16 @@ public class Data
         //Si no es la última escribe en la misma linea
         if (!last)
         {
-            //Paso los floats al formato universal para que en el csv se escriban con . ya que el formato de separacion es la coma
+            //Pasamos los floats al formato universal para que en el csv se escriban con . ya que el formato de separacion es la coma
             fileWriter.Write(accelX.ToString(System.Globalization.CultureInfo.CreateSpecificCulture("en-US"))
                 + ", " + accelY.ToString(System.Globalization.CultureInfo.CreateSpecificCulture("en-US"))
                 + ", " + accelZ.ToString(System.Globalization.CultureInfo.CreateSpecificCulture("en-US")) + ",");
         }
         else
         {
-            fileWriter.Write('\n');
+            fileWriter.Write(accelX.ToString(System.Globalization.CultureInfo.CreateSpecificCulture("en-US"))
+                 + ", " + accelY.ToString(System.Globalization.CultureInfo.CreateSpecificCulture("en-US"))
+                 + ", " + accelZ.ToString(System.Globalization.CultureInfo.CreateSpecificCulture("en-US")) + '\n');
         }
     }
 
