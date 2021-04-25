@@ -9,6 +9,12 @@ TagManager:
   - punto
   - ColliderCortar
   - ColliderJugador
+  - punto
+  - Tronco
+  - Potion
+  - Wood
+  - Obstacle
+  - Point
   layers:
   - Default
   - TransparentFX

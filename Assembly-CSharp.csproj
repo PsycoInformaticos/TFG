@@ -64,27 +64,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\BarraVIda.cs" />
-    <Compile Include="Assets\Collisions.cs" />
-    <Compile Include="Assets\CutScript.cs" />
     <Compile Include="Assets\JoyconLib_scripts\HIDapi.cs" />
     <Compile Include="Assets\JoyconLib_scripts\Joycon.cs" />
     <Compile Include="Assets\JoyconLib_scripts\JoyconManager.cs" />
-    <Compile Include="Assets\MoveScript.cs" />
     <Compile Include="Assets\Scripts\AttackState.cs" />
     <Compile Include="Assets\Scripts\CollectData.cs" />
     <Compile Include="Assets\Scripts\Data.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\Healthbar.cs" />
     <Compile Include="Assets\Scripts\JoyconDemo.cs" />
     <Compile Include="Assets\Scripts\JoyconMovement.cs" />
     <Compile Include="Assets\Scripts\NeuralNetwork.cs" />
-    <Compile Include="Assets\Scripts\Puntos.cs" />
-    <Compile Include="Assets\Scripts\checkpointMove.cs" />
+    <Compile Include="Assets\Scripts\Runner Logic\CutScript.cs" />
+    <Compile Include="Assets\Scripts\Runner Logic\Healthbar.cs" />
+    <Compile Include="Assets\Scripts\Runner Logic\ObstacleLogic.cs" />
+    <Compile Include="Assets\Scripts\Runner Logic\SoundManager.cs" />
+    <Compile Include="Assets\Scripts\Runner Logic\MoveScript.cs" />
     <Compile Include="Assets\Supercyan Character Pack Free Sample\Scripts\CameraLogic.cs" />
     <Compile Include="Assets\Supercyan Character Pack Free Sample\Scripts\Demo.cs" />
     <Compile Include="Assets\Supercyan Character Pack Free Sample\Scripts\SimpleCharacterControl.cs" />
-    <Compile Include="Assets\Vida.cs" />
     <None Include="Assets\Swords\Swords\Shader\ToonSwords.shader" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/Documentos/UCM/TFG/TFG/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
