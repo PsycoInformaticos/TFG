@@ -74,11 +74,13 @@
     <Compile Include="Assets\Scripts\JoyconDemo.cs" />
     <Compile Include="Assets\Scripts\JoyconMovement.cs" />
     <Compile Include="Assets\Scripts\NeuralNetwork.cs" />
+    <Compile Include="Assets\Scripts\Puntos.cs" />
     <Compile Include="Assets\Scripts\Runner Logic\CutScript.cs" />
     <Compile Include="Assets\Scripts\Runner Logic\Healthbar.cs" />
+    <Compile Include="Assets\Scripts\Runner Logic\MoveScript.cs" />
     <Compile Include="Assets\Scripts\Runner Logic\ObstacleLogic.cs" />
     <Compile Include="Assets\Scripts\Runner Logic\SoundManager.cs" />
-    <Compile Include="Assets\Scripts\Runner Logic\MoveScript.cs" />
+    <Compile Include="Assets\Scripts\Slashing.cs" />
     <Compile Include="Assets\Supercyan Character Pack Free Sample\Scripts\CameraLogic.cs" />
     <Compile Include="Assets\Supercyan Character Pack Free Sample\Scripts\Demo.cs" />
     <Compile Include="Assets\Supercyan Character Pack Free Sample\Scripts\SimpleCharacterControl.cs" />

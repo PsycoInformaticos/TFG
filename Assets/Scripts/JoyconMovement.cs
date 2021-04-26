@@ -21,7 +21,7 @@ public class JoyconMovement : MonoBehaviour
     public int jcIndex = 0;
     public Quaternion orientation;
 
-    //arrows, runer, drawing
+    //slashing, runer, drawing
     public string minigame;
 
     public GameObject rightController;
@@ -98,7 +98,7 @@ public class JoyconMovement : MonoBehaviour
     {
         JoyconUpdate();
 
-        if(minigame == "arrows")
+        if(minigame == "slashing")
             Movement();
 
     }
