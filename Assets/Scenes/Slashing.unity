@@ -5465,6 +5465,8 @@ MonoBehaviour:
   rSword: {fileID: 1355738320}
   lSword: {fileID: 1488680383}
   points: {fileID: 1536661799}
+  rMaterial: {fileID: 2100000, guid: dc69acf77e65ec74d933202b1f5c189b, type: 2}
+  lMaterial: {fileID: 2100000, guid: 6fb95643602bd8440b374025cafd5f81, type: 2}
 --- !u!4 &1418498210
 Transform:
   m_ObjectHideFlags: 0
