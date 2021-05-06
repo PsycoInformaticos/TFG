@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
     //public GameObject PlayerHealthbar;
     public GameObject EnemyHealthbar;
 
-    bool flecha;
 
     public TextMeshProUGUI punctuationText;
     public int punctuation = 0;
@@ -22,12 +21,6 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        flecha = false;
     }
 
     // Update is called once per frame
@@ -44,20 +37,6 @@ public class GameManager : MonoBehaviour
         if (Input.GetButtonDown("Fire2")) //R
         {
             EnemyHealthbar.GetComponent<Healthbar>().DecreaseHealth();
-        }
-
-        if (Input.GetButtonDown("Fire3")) //T
-        {
-            GetComponent<AttackState>().nextArrow();
-            flecha = true; 
-
-        }
-        if (flecha)
-        {
-            GetComponent<AttackState>().attack();
-
-            if (GetComponent<AttackState>().GetFlechaDestruida())
-                flecha = false;
         }
 
     }

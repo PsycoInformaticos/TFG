@@ -35,16 +35,19 @@ public class NeuralNetwork : MonoBehaviour
         string data = output.DataToString();
         Debug.Log(data);
 
-        float f1 = output[0];
-        move = 0;
-        for (int i = 1; i < output.length; i++)
+        float f1 = 0;
+        for (int i = 0; i < output.length; i++)
         {
             float f2 = output[i];
 
             if (f1 < f2)
             {
                 f1 = f2;
-                move = i;
+                
+                if (f1 >= 1)
+                {
+                    move = i;
+                }
             }
         }
 

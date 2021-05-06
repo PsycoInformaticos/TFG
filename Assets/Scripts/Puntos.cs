@@ -22,4 +22,10 @@ public class Puntos : MonoBehaviour
         points += p;
         t.text = "Puntuación: " + points;
     }
+
+    public void reset()
+    {
+        points = 0;
+        t.text = "Puntuación: " + points;
+    }
 }

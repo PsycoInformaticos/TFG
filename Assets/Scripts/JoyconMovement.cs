@@ -25,7 +25,7 @@ public class JoyconMovement : MonoBehaviour
     public string minigame;
 
     public GameObject rightController;
-    //public GameObject leftController;
+    public GameObject leftController;
 
     //Variables para recoger movimientos
     float cont;
@@ -79,18 +79,18 @@ public class JoyconMovement : MonoBehaviour
 
         }
 
-        //else if (gameObject == leftController)
-        //{
-        //    if (joycons[0].isLeft)
-        //    {
-        //        j = joycons[0];
+        else if (gameObject == leftController)
+        {
+            if (joycons[0].isLeft)
+            {
+                j = joycons[0];
 
-        //    }
+            }
 
-        //    else
-        //        j = joycons[1];
+            else
+                j = joycons[1];
 
-        //}
+        }
 
     }
 
@@ -222,8 +222,8 @@ public class JoyconMovement : MonoBehaviour
     //Prueba con el contador
     public int moveType()
     {
-        int type = -1;
-        int[] dirRepetidas = new int[] { 0, 0, 0, 0 };
+        int type = 4;
+        int[] dirRepetidas = new int[] { 0, 0, 0, 0, 0 };
 
         int vueltas = moves.Count;
         if (vueltas > 0)
@@ -235,14 +235,14 @@ public class JoyconMovement : MonoBehaviour
                 else if (peek == 1) dirRepetidas[1]++;
                 else if (peek == 2) dirRepetidas[2]++;
                 else if (peek == 3) dirRepetidas[3]++;
+                else if (peek == -1) dirRepetidas[4]++;
             }
 
-            int t = dirRepetidas[0];
-            //Debug.Log(0 + " -> " + dirRepetidas[0]);
-            type = 0;
-            for (int j = 1; j < dirRepetidas.Length; j++)
+            //Debug.Log(dirRepetidas[0] + " " + dirRepetidas[1] + " " + dirRepetidas[2] + " " + dirRepetidas[3] + " " + dirRepetidas[4]);
+
+            int t = 0;
+            for (int j = 0; j < dirRepetidas.Length; j++)
             {
-                //Debug.Log(j + " -> " + dirRepetidas[j]);
 
                 if (dirRepetidas[j] > t)
                 {

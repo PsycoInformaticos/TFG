@@ -9,6 +9,7 @@ public class Slashing : MonoBehaviour
     public GameObject rSword;   //Espada derecha
     public GameObject lSword;   //Espada izquierda
     public GameObject points;   //Texto de los puntos
+    public GameObject slash;    //Sprite del corte
 
     public Material rMaterial;
     public Material lMaterial;
@@ -17,24 +18,41 @@ public class Slashing : MonoBehaviour
     int nextStar;               //Tiempo para la siguiente aparicion de una estrella
     int contNextStar;           //Contador de tiempo desde cero a nextStar
 
+    int checkMove;              //Contador entre revisiones de movimientos nuevos
+
     private void Start()
     {
         sphereActive = false;
         nextStar = 100;
         contNextStar = 0;
+        checkMove = 50;
 
         star.SetActive(false);
+        slash.SetActive(false);
     }
 
     private void Update()
     {
         if (sphereActive)
         {
-            isSlashing();
-            contNextStar = 0;
+            if (checkMove >= 100)
+            {
+                if (isSlashing())
+                {
+                    star.SetActive(false);
+                    sphereActive = false;
+                    points.GetComponent<Puntos>().setPoints(5);
+
+                }
+
+                contNextStar = 0;
+                checkMove = 0;
+            }
+            else checkMove++;
         }
         else
         {
+        
             contNextStar++;
 
             if (contNextStar >= nextStar)
@@ -44,20 +62,25 @@ public class Slashing : MonoBehaviour
 
                 Renderer render = star.GetComponent<Renderer>();
                 int r = Random.Range(0, 2);
-                Debug.Log("Random " + r);
                 if (r == 0) render.material = rMaterial;
                 else if (r == 1) render.material = lMaterial;
             }
         }
     }
 
-    void isSlashing()
+    bool isSlashing()
     {
-        if(rSword.GetComponent<JoyconMovement>().moveType() == 1)
+     
+        if (star.GetComponent<Renderer>().sharedMaterial == rSword.GetComponent<Renderer>().sharedMaterial && rSword.GetComponent<JoyconMovement>().moveType() != 4)
         {
-            sphereActive = false;
-            star.SetActive(false);
-            points.GetComponent<Puntos>().setPoints(5);
+            return true;
         }
+        else if (star.GetComponent<Renderer>().sharedMaterial == lSword.GetComponent<Renderer>().sharedMaterial && lSword.GetComponent<JoyconMovement>().moveType() != 4)
+        {
+            return true;
+        }
+        else 
+            return false;
     }
+
 }
