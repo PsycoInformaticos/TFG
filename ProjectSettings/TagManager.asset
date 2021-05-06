@@ -4,17 +4,14 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - pocion
-  - tronco
-  - punto
   - ColliderCortar
   - ColliderJugador
   - punto
-  - Tronco
   - Potion
-  - Wood
   - Obstacle
   - Point
+  - SoundManager
+  - PunctuationTrigger
   layers:
   - Default
   - TransparentFX

@@ -19,6 +19,8 @@ public class CutScript : MonoBehaviour
             if (Input.GetKeyDown("e"))
             {
                 Debug.Log("CORTAR: " + objCollider.name);
+                Debug.Log(GameManager.Instance);
+                GameManager.Instance.punctuation++;
 
                 SoundManager.Instance.Play(SoundManager.Instance.effects[0]);
 
