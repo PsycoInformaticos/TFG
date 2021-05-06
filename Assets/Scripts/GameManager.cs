@@ -76,6 +76,9 @@ public class GameManager : MonoBehaviour
 
     public void UpdatePoints()
     {
-        punctuationText.text = "Puntuacion: " + punctuation.ToString();
+        if (punctuationText != null)
+        {
+            punctuationText.text = "Puntuacion: " + punctuation.ToString();
+        }
     }
 }
