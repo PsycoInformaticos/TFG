@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class CharacterLogic : MonoBehaviour
 {
-    private int pos;
-    public GameObject[] posMaps;
-    private float speed = 5f;
+    //private int pos;
+    //public GameObject[] posMaps;
+    //private float speed = 5f;
 
     public int healthCounter;
     public int maxHealth = 5;
@@ -25,29 +25,29 @@ public class CharacterLogic : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1;
-        pos = 0;
+        //pos = 0;
         //Fijamos el primer punto para empezar a movernos hacia el
-        GameObject.FindWithTag("Player").transform.LookAt(GameObject.Find("Point0").transform);
+       // GameObject.FindWithTag("Player").transform.LookAt(GameObject.Find("Point0").transform);
     }
 
     // Update is called once per frame
     private void Update()
     {
         UpdateLife();
-        Vector3 direction = posMaps[pos].transform.position - GameObject.FindWithTag("Player").transform.position;
+        /*Vector3 direction = posMaps[pos].transform.position - GameObject.FindWithTag("Player").transform.position;
         direction.y = 0f;
         Quaternion rotation = Quaternion.LookRotation(direction);
-        GameObject.FindWithTag("Player").transform.rotation = Quaternion.Lerp(GameObject.FindWithTag("Player").transform.rotation, rotation, speed * Time.deltaTime);
+        GameObject.FindWithTag("Player").transform.rotation = Quaternion.Lerp(GameObject.FindWithTag("Player").transform.rotation, rotation, speed * Time.deltaTime);*/
     }
     private void OnTriggerEnter(Collider other)
     {
         //actualizamos el contador de posicion y mientras haya posiciones a las que ir, cambiamos la direccion. Si no hay mas mensaje de que se acabo
-        if (other.tag == "Point")
+        /*if (other.tag == "Point")
         {
             pos++;
-        }
+        }*/
 
-        else if (other.tag == "Potion")
+        if (other.tag == "Potion")
         {
             healthCounter++;
             SoundManager.Instance.Play(SoundManager.Instance.effects[1]);
@@ -67,7 +67,14 @@ public class CharacterLogic : MonoBehaviour
                 Debug.Log("Pierdo vida: choque contra piedra");
                 healthCounter = healthCounter - 2;
             }
-            SoundManager.Instance.Play(SoundManager.Instance.effects[2]);
+            if (healthCounter <= 0)
+            {
+                SoundManager.Instance.Play(SoundManager.Instance.effects[3]);
+            }
+            else
+            {
+                SoundManager.Instance.Play(SoundManager.Instance.effects[2]);
+            }
             Destroy(other.gameObject);
         }
 
@@ -75,6 +82,20 @@ public class CharacterLogic : MonoBehaviour
         {
             Debug.Log("Aumenta puntuacion");
             GameManager.Instance.punctuation += 2;
+        }
+
+        if (other.tag == "PoolTrigger")
+        {
+            Debug.Log("PoolTrigger");
+            ObjectPoolManager.SharedInstance.GeneratePoolObject();
+
+        }
+
+        if (other.tag == "SpawnPoolPosition")
+        {
+            Debug.Log("SpawnPoolPosition");
+            other.gameObject.transform.parent.gameObject.SetActive(false);
+
         }
     }
 

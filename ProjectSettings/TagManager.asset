@@ -12,6 +12,8 @@ TagManager:
   - Point
   - SoundManager
   - PunctuationTrigger
+  - PoolTrigger
+  - SpawnPoolPosition
   layers:
   - Default
   - TransparentFX
