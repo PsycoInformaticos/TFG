@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Slashing : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Slashing : MonoBehaviour
     public GameObject lSword;   //Espada izquierda
     public GameObject points;   //Texto de los puntos
     public GameObject slash;    //Sprite del corte
+
+    public Text direccion; //Texto para indicar hacia donde se mueve el mando
 
     public Material rMaterial;
     public Material lMaterial;
@@ -70,12 +73,16 @@ public class Slashing : MonoBehaviour
 
     bool isSlashing()
     {
-     
-        if (star.GetComponent<Renderer>().sharedMaterial == rSword.GetComponent<Renderer>().sharedMaterial && rSword.GetComponent<JoyconMovement>().moveType() != 4)
+        int moveTypeR = rSword.GetComponent<JoyconMovement>().moveType();
+        int moveTypeL = lSword.GetComponent<JoyconMovement>().moveType();
+
+        direccion.text = moveTypeR.ToString();
+
+        if (star.GetComponent<Renderer>().sharedMaterial == rSword.GetComponent<Renderer>().sharedMaterial && moveTypeR != 4)
         {
             return true;
         }
-        else if (star.GetComponent<Renderer>().sharedMaterial == lSword.GetComponent<Renderer>().sharedMaterial && lSword.GetComponent<JoyconMovement>().moveType() != 4)
+        else if (star.GetComponent<Renderer>().sharedMaterial == lSword.GetComponent<Renderer>().sharedMaterial && moveTypeL != 4)
         {
             return true;
         }

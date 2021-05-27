@@ -235,6 +235,7 @@ public class JoyconMovement : MonoBehaviour
                 else if (peek == 1) dirRepetidas[1]++;
                 else if (peek == 2) dirRepetidas[2]++;
                 else if (peek == 3) dirRepetidas[3]++;
+                else if (peek == 4) dirRepetidas[4]++;
                 else if (peek == -1) dirRepetidas[4]++;
             }
 
