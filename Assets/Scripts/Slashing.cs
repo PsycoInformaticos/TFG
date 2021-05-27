@@ -12,7 +12,8 @@ public class Slashing : MonoBehaviour
     public GameObject points;   //Texto de los puntos
     public GameObject slash;    //Sprite del corte
 
-    public Text direccion; //Texto para indicar hacia donde se mueve el mando
+    public Text direccionR; //Texto para indicar hacia donde se mueve el mando
+    public Text direccionL; //Texto para indicar hacia donde se mueve el mando
 
     public Material rMaterial;
     public Material lMaterial;
@@ -76,7 +77,8 @@ public class Slashing : MonoBehaviour
         int moveTypeR = rSword.GetComponent<JoyconMovement>().moveType();
         int moveTypeL = lSword.GetComponent<JoyconMovement>().moveType();
 
-        direccion.text = moveTypeR.ToString();
+        direccionR.text = moveTypeR.ToString();
+        direccionL.text = moveTypeL.ToString();
 
         if (star.GetComponent<Renderer>().sharedMaterial == rSword.GetComponent<Renderer>().sharedMaterial && moveTypeR != 4)
         {

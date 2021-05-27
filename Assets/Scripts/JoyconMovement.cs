@@ -122,7 +122,7 @@ public class JoyconMovement : MonoBehaviour
         Joycon j = joycons[jcIndex];
 
         //Al pulsar el boton PLUS o MINUS (depende del mando que se este usando) 
-        if (j.GetButtonDown(Joycon.Button.PLUS) || j.GetButtonDown(Joycon.Button.MINUS))
+        if (j.GetButtonDown(Joycon.Button.PLUS))
         {
             //Activa el booleano para poder recoger la aceleracion en ColletData
             pressed = true;
@@ -130,6 +130,14 @@ public class JoyconMovement : MonoBehaviour
             // Joycon has no magnetometer, so it cannot accurately determine its yaw value. Joycon.Recenter allows the user to reset the yaw value.
             j.Recenter();
 
+        }
+        if (j.GetButtonDown(Joycon.Button.MINUS))
+        {
+            //Activa el booleano para poder recoger la aceleracion en ColletData
+            pressed = true;
+
+            // Joycon has no magnetometer, so it cannot accurately determine its yaw value. Joycon.Recenter allows the user to reset the yaw value.
+            j.Recenter();
         }
 
     }
@@ -236,7 +244,7 @@ public class JoyconMovement : MonoBehaviour
                 else if (peek == 2) dirRepetidas[2]++;
                 else if (peek == 3) dirRepetidas[3]++;
                 else if (peek == 4) dirRepetidas[4]++;
-                else if (peek == -1) dirRepetidas[4]++;
+                //else if (peek == -1) dirRepetidas[4]++;
             }
 
             //Debug.Log(dirRepetidas[0] + " " + dirRepetidas[1] + " " + dirRepetidas[2] + " " + dirRepetidas[3] + " " + dirRepetidas[4]);
