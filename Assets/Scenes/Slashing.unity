@@ -834,7 +834,6 @@ MonoBehaviour:
   lastAccel: {x: 0, y: 0, z: 0}
   jcIndex: 0
   orientation: {x: 0, y: 0, z: 0, w: 0}
-  minigame: slashing
   rightController: {fileID: 1355738320}
   leftController: {fileID: 1488680383}
   timeWait: 50
@@ -5750,7 +5749,6 @@ MonoBehaviour:
   lastAccel: {x: 0, y: 0, z: 0}
   jcIndex: 0
   orientation: {x: 0, y: 0, z: 0, w: 0}
-  minigame: slashing
   rightController: {fileID: 1355738320}
   leftController: {fileID: 1488680383}
   timeWait: 50
@@ -6018,7 +6016,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e55c47c57ddf62140b0b985896849ee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 5022602860645237092, guid: ed828b2582ef0394f8c3528e94bfa71b, type: 3}
+  model: {fileID: 5022602860645237092, guid: ad0110f275861344caa52885f94cccdb, type: 3}
 --- !u!4 &1881014978
 Transform:
   m_ObjectHideFlags: 0

@@ -21,9 +21,6 @@ public class JoyconMovement : MonoBehaviour
     public int jcIndex = 0;
     public Quaternion orientation;
 
-    //slashing, runer, drawing
-    public string minigame;
-
     public GameObject rightController;
     public GameObject leftController;
 
@@ -97,9 +94,8 @@ public class JoyconMovement : MonoBehaviour
     private void FixedUpdate()
     {
         JoyconUpdate();
-
-        if(minigame == "slashing")
-            Movement();
+        
+        Movement();
 
     }
 
@@ -111,8 +107,6 @@ public class JoyconMovement : MonoBehaviour
         {
             Input();
 
-            if(minigame == "drawing")
-                Pointer();
         }
 
     }
@@ -122,7 +116,7 @@ public class JoyconMovement : MonoBehaviour
         Joycon j = joycons[jcIndex];
 
         //Al pulsar el boton PLUS o MINUS (depende del mando que se este usando) 
-        if (j.GetButtonDown(Joycon.Button.PLUS))
+        if (j.GetButtonDown(Joycon.Button.PLUS) || j.GetButtonDown(Joycon.Button.MINUS))
         {
             //Activa el booleano para poder recoger la aceleracion en ColletData
             pressed = true;
@@ -130,14 +124,6 @@ public class JoyconMovement : MonoBehaviour
             // Joycon has no magnetometer, so it cannot accurately determine its yaw value. Joycon.Recenter allows the user to reset the yaw value.
             j.Recenter();
 
-        }
-        if (j.GetButtonDown(Joycon.Button.MINUS))
-        {
-            //Activa el booleano para poder recoger la aceleracion en ColletData
-            pressed = true;
-
-            // Joycon has no magnetometer, so it cannot accurately determine its yaw value. Joycon.Recenter allows the user to reset the yaw value.
-            j.Recenter();
         }
 
     }
@@ -197,33 +183,19 @@ public class JoyconMovement : MonoBehaviour
                 cont++;
 
                 //Se guarda cada valor de la acceleracion
-                //move[it++] = accel.x;
-                //move[it++] = accel.y;
-                //move[it++] = accel.z;
+                move[it++] = accel.x;
+                move[it++] = accel.y;
+                move[it++] = accel.z;
 
-                move[it++] = gyro.x;
-                move[it++] = gyro.y;
-                move[it++] = gyro.z;
+                //move[it++] = gyro.x;
+                //move[it++] = gyro.y;
+                //move[it++] = gyro.z;
             }
 
 
         }
         else contWait++;
        
-
-    }
-
-    void Pointer()
-    {
-        //if ((float)Math.Round(accel.x, 2) != (float)Math.Round(lastAccel.x, 2))
-        //{
-        //    transform.position += new Vector3((float)Math.Round(accel.x, 2), 0, 0);
-        //}
-
-        //if ((float)Math.Round(accel.y, 2) != (float)Math.Round(lastAccel.y, 2))
-        //    transform.position -= new Vector3(0, (float)Math.Round(accel.y, 2), 0);
-
-        transform.position += new Vector3((float)Math.Round(gyro.x, 2), (float)Math.Round(gyro.y, 2), 0);
 
     }
 
@@ -244,10 +216,7 @@ public class JoyconMovement : MonoBehaviour
                 else if (peek == 2) dirRepetidas[2]++;
                 else if (peek == 3) dirRepetidas[3]++;
                 else if (peek == 4) dirRepetidas[4]++;
-                //else if (peek == -1) dirRepetidas[4]++;
             }
-
-            //Debug.Log(dirRepetidas[0] + " " + dirRepetidas[1] + " " + dirRepetidas[2] + " " + dirRepetidas[3] + " " + dirRepetidas[4]);
 
             int t = 0;
             for (int j = 0; j < dirRepetidas.Length; j++)
@@ -260,8 +229,6 @@ public class JoyconMovement : MonoBehaviour
                 }
             }
         }
-
-        //Debug.Log(type);
 
         return type;
 

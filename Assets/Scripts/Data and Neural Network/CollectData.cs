@@ -27,8 +27,8 @@ public class CollectData : MonoBehaviour
         if (sword.GetComponent<JoyconMovement>().getPressed())
         {
             //Se guarda la aceleración en cada momento que se detecte como botón pulsado
-            //vData = sword.GetComponent<JoyconMovement>().getAccel();
-            vData = sword.GetComponent<JoyconMovement>().getGyro();
+            vData = sword.GetComponent<JoyconMovement>().getAccel();
+            //vData = sword.GetComponent<JoyconMovement>().getGyro();
 
             //Suponemos que hay 50 fixedupdate por segundo
             //Si el contador llega a 50 (uno segundo), le indicará a JoyconMovement
