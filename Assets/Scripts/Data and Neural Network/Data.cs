@@ -55,6 +55,7 @@ public class Data
             fileWriter.Write(accelX.ToString(System.Globalization.CultureInfo.CreateSpecificCulture("en-US"))
                  + ", " + accelY.ToString(System.Globalization.CultureInfo.CreateSpecificCulture("en-US"))
                  + ", " + accelZ.ToString(System.Globalization.CultureInfo.CreateSpecificCulture("en-US")) + '\n');
+
         }
     }
 
