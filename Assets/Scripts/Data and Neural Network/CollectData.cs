@@ -7,6 +7,8 @@ public class CollectData : MonoBehaviour
 {
     public GameObject sword;
     public Text dataText;
+    public Text numText;
+    int num;
 
     Vector3 vData;
     int cont;
@@ -28,6 +30,7 @@ public class CollectData : MonoBehaviour
         nuevoMovimiento = false;
         contTransform = 1;
         itTransform = 0;
+        num = 1;
     }
 
     private void FixedUpdate()
@@ -59,6 +62,8 @@ public class CollectData : MonoBehaviour
                 cont = 1;
                 it = 0;
                 nuevoMovimiento = true;
+
+                numText.text = num.ToString(); num++;
             }
 
             //Si no ha pasado un segundo, sigue escribiendo los distintos valores
@@ -66,6 +71,7 @@ public class CollectData : MonoBehaviour
             else
             {
                 dataText.text = vData.ToString();
+                
                 dataFile.Write(vData.x, vData.y, vData.z, false);
 
                 //Se guarda cada valor de la acceleracion transformada
