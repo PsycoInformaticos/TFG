@@ -37,39 +37,46 @@ public class Slashing : MonoBehaviour
 
     private void Update()
     {
-        if (sphereActive)
-        {
-            if (checkMove >= 100)
-            {
-                if (isSlashing())
-                {
-                    star.SetActive(false);
-                    sphereActive = false;
-                    points.GetComponent<Puntos>().setPoints(5);
+        int moveTypeR = rSword.GetComponent<JoyconMovement>().moveType();
+        int moveTypeL = lSword.GetComponent<JoyconMovement>().moveType();
 
-                }
+        direccionR.text = moveTypeR.ToString();
+        direccionL.text = moveTypeL.ToString();
 
-                contNextStar = 0;
-                checkMove = 0;
-            }
-            else checkMove++;
-        }
-        else
-        {
+
+        //if (sphereActive)
+        //{
+        //    if (checkMove >= 100)
+        //    {
+        //        if (isSlashing())
+        //        {
+        //            star.SetActive(false);
+        //            sphereActive = false;
+        //            points.GetComponent<Puntos>().setPoints(5);
+
+        //        }
+
+        //        contNextStar = 0;
+        //        checkMove = 0;
+        //    }
+        //    else checkMove++;
+        //}
+        //else
+        //{
         
-            contNextStar++;
+        //    contNextStar++;
 
-            if (contNextStar >= nextStar)
-            {
-                sphereActive = true;
-                star.SetActive(true);
+        //    if (contNextStar >= nextStar)
+        //    {
+        //        sphereActive = true;
+        //        star.SetActive(true);
 
-                Renderer render = star.GetComponent<Renderer>();
-                int r = Random.Range(0, 2);
-                if (r == 0) render.material = rMaterial;
-                else if (r == 1) render.material = lMaterial;
-            }
-        }
+        //        Renderer render = star.GetComponent<Renderer>();
+        //        int r = Random.Range(0, 2);
+        //        if (r == 0) render.material = rMaterial;
+        //        else if (r == 1) render.material = lMaterial;
+        //    }
+        //}
     }
 
     bool isSlashing()

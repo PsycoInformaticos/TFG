@@ -41,6 +41,8 @@ public class JoyconMovement : MonoBehaviour
 
     //Variables para la recogida de datos
     bool pressed;
+
+    int type;
     
 
     void Start()
@@ -88,6 +90,8 @@ public class JoyconMovement : MonoBehaviour
                 j = joycons[1];
 
         }
+
+        type = -1;
 
     }
 
@@ -202,35 +206,39 @@ public class JoyconMovement : MonoBehaviour
     //Prueba con el contador
     public int moveType()
     {
-        int type = 4;
-        int[] dirRepetidas = new int[] { 0, 0, 0, 0, 0 };
+        //int type = 4;
+        //int[] dirRepetidas = new int[] { 0, 0, 0, 0, 0 };
 
-        int vueltas = moves.Count;
-        if (vueltas > 0)
+        //int vueltas = moves.Count;
+        //if (vueltas > 0)
+        //{
+        //    for (int i = 0; i < vueltas; i++)
+        //    {
+        //        int peek = moves.Peek(); moves.Dequeue();
+        //        if (peek == 0) dirRepetidas[0]++;
+        //        else if (peek == 1) dirRepetidas[1]++;
+        //        else if (peek == 2) dirRepetidas[2]++;
+        //        else if (peek == 3) dirRepetidas[3]++;
+        //        else if (peek == 4) dirRepetidas[4]++;
+        //    }
+
+        //    int t = 0;
+        //    for (int j = 0; j < dirRepetidas.Length; j++)
+        //    {
+
+        //        if (dirRepetidas[j] > t)
+        //        {
+        //            t = dirRepetidas[j];
+        //            type = j;
+        //        }
+        //    }
+        //}
+        if (moves.Count != 0)
         {
-            for (int i = 0; i < vueltas; i++)
-            {
-                int peek = moves.Peek(); moves.Dequeue();
-                if (peek == 0) dirRepetidas[0]++;
-                else if (peek == 1) dirRepetidas[1]++;
-                else if (peek == 2) dirRepetidas[2]++;
-                else if (peek == 3) dirRepetidas[3]++;
-                else if (peek == 4) dirRepetidas[4]++;
-            }
-
-            int t = 0;
-            for (int j = 0; j < dirRepetidas.Length; j++)
-            {
-
-                if (dirRepetidas[j] > t)
-                {
-                    t = dirRepetidas[j];
-                    type = j;
-                }
-            }
+            type = moves.Peek(); moves.Dequeue();
         }
-
         return type;
+        
 
     }
 

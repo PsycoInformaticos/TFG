@@ -366,7 +366,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &732015880
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -550,7 +550,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1042928531
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5723,6 +5723,10 @@ PrefabInstance:
       propertyPath: m_ReceiveShadows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: a45a25ec0193de54fbd3efca6e19755e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a45a25ec0193de54fbd3efca6e19755e, type: 3}
 --- !u!1 &1488680383 stripped
@@ -5771,7 +5775,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1536661800
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6016,7 +6020,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e55c47c57ddf62140b0b985896849ee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 5022602860645237092, guid: ad0110f275861344caa52885f94cccdb, type: 3}
+  model: {fileID: 5022602860645237092, guid: 2b1fe23bc7d63374e8c18fa50b6099bc, type: 3}
 --- !u!4 &1881014978
 Transform:
   m_ObjectHideFlags: 0
