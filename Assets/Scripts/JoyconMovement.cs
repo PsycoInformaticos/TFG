@@ -17,7 +17,8 @@ public class JoyconMovement : MonoBehaviour
     public float[] stick;
     public Vector3 gyro;
     public Vector3 accel;
-    public Vector3 lastAccel;
+    public Vector3 linearAccel;
+    public Vector3 gravity;
     public int jcIndex = 0;
     public Quaternion orientation;
 
@@ -52,6 +53,9 @@ public class JoyconMovement : MonoBehaviour
 
         gyro = new Vector3(0, 0, 0);
         accel = new Vector3(0, 0, 0);
+        linearAccel = new Vector3(0, 0, 0);
+        gravity = new Vector3(0, 0, 0);
+
         // get the public Joycon object attached to the JoyconManager in scene
         joycons = JoyconManager.Instance.j;
         if (joycons.Count < jcIndex + 1)
@@ -140,8 +144,16 @@ public class JoyconMovement : MonoBehaviour
         gyro = j.GetGyro();
 
         // Accel values:  x, y, z axis values (in Gs)
-        lastAccel = accel;
         accel = j.GetAccel();
+
+        gravity.x = 0.9f * gravity.x + 0.1f * accel.x;
+        gravity.y = 0.9f * gravity.y + 0.1f * accel.y;
+        gravity.z = 0.9f * gravity.z + 0.1f * accel.z;
+
+        linearAccel.x = accel.x - gravity.x;
+        linearAccel.y = accel.y - gravity.y;
+        linearAccel.z = accel.z - gravity.z;
+
 
         orientation.x = j.GetVector().x;
         orientation.y = j.GetVector().y;
@@ -187,9 +199,9 @@ public class JoyconMovement : MonoBehaviour
                 cont++;
 
                 //Se guarda cada valor de la acceleracion
-                move[it++] = accel.x;
-                move[it++] = accel.y;
-                move[it++] = accel.z;
+                move[it++] = linearAccel.x;
+                move[it++] = linearAccel.y;
+                move[it++] = linearAccel.z;
 
                 //move[it++] = gyro.x;
                 //move[it++] = gyro.y;
@@ -245,7 +257,7 @@ public class JoyconMovement : MonoBehaviour
     //Devuelve la aceleración que tiene cuando se le pide
     public Vector3 getAccel()
     {
-        return accel;
+        return linearAccel;
     }
 
     //Devuelve el gyro que tiene cuando se le pide

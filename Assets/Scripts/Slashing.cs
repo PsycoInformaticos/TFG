@@ -38,10 +38,29 @@ public class Slashing : MonoBehaviour
     private void Update()
     {
         int moveTypeR = rSword.GetComponent<JoyconMovement>().moveType();
-        int moveTypeL = lSword.GetComponent<JoyconMovement>().moveType();
+        //int moveTypeL = lSword.GetComponent<JoyconMovement>().moveType();
 
-        direccionR.text = moveTypeR.ToString();
-        direccionL.text = moveTypeL.ToString();
+        switch (moveTypeR)
+        {
+            case 0:
+                direccionR.text = "UP";
+                break;
+            case 1:
+                direccionR.text = "DOWN";
+                break;
+            case 2:
+                direccionR.text = "RIGHT";
+                break;
+            case 3:
+                direccionR.text = "LEFT";
+                break;
+            case 4:
+                direccionR.text = "NONE";
+                break;
+        }
+
+        //direccionR.text = moveTypeR.ToString();
+        //direccionL.text = moveTypeL.ToString();
 
 
         //if (sphereActive)
