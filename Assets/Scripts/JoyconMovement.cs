@@ -218,7 +218,6 @@ public class JoyconMovement : MonoBehaviour
     //Prueba con el contador
     public int moveType()
     {
-        //int type = 4;
         //int[] dirRepetidas = new int[] { 0, 0, 0, 0, 0 };
 
         //int vueltas = moves.Count;

@@ -831,7 +831,8 @@ MonoBehaviour:
   stick: []
   gyro: {x: 0, y: 0, z: 0}
   accel: {x: 0, y: 0, z: 0}
-  lastAccel: {x: 0, y: 0, z: 0}
+  linearAccel: {x: 0, y: 0, z: 0}
+  gravity: {x: 0, y: 0, z: 0}
   jcIndex: 0
   orientation: {x: 0, y: 0, z: 0, w: 0}
   rightController: {fileID: 1355738320}
@@ -5750,7 +5751,8 @@ MonoBehaviour:
   stick: []
   gyro: {x: 0, y: 0, z: 0}
   accel: {x: 0, y: 0, z: 0}
-  lastAccel: {x: 0, y: 0, z: 0}
+  linearAccel: {x: 0, y: 0, z: 0}
+  gravity: {x: 0, y: 0, z: 0}
   jcIndex: 0
   orientation: {x: 0, y: 0, z: 0, w: 0}
   rightController: {fileID: 1355738320}
@@ -6020,7 +6022,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e55c47c57ddf62140b0b985896849ee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 5022602860645237092, guid: 2b1fe23bc7d63374e8c18fa50b6099bc, type: 3}
+  model: {fileID: 5022602860645237092, guid: 2c4a040ab082b6f40ba7e133b0975981, type: 3}
 --- !u!4 &1881014978
 Transform:
   m_ObjectHideFlags: 0
