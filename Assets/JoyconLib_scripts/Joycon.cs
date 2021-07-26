@@ -208,7 +208,7 @@ public class Joycon
     private Rumble rumble_obj;
 
     private byte global_count = 0;
-    private string debug_str;
+    //private string debug_str;
 
     public Joycon(IntPtr handle_, bool imu, bool localize, float alpha, bool left)
     {
