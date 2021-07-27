@@ -77,7 +77,6 @@
     <Compile Include="Assets\Scripts\Puntos.cs" />
     <Compile Include="Assets\Scripts\Runner Logic\CharacterLogic.cs" />
     <Compile Include="Assets\Scripts\Runner Logic\CutScript.cs" />
-    <Compile Include="Assets\Scripts\Runner Logic\Healthbar.cs" />
     <Compile Include="Assets\Scripts\Runner Logic\ObstacleLogic.cs" />
     <Compile Include="Assets\Scripts\Runner Logic\SoundManager.cs" />
     <Compile Include="Assets\Scripts\Slasher Logic\Slashing.cs" />

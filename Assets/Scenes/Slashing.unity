@@ -837,7 +837,7 @@ MonoBehaviour:
   orientation: {x: 0, y: 0, z: 0, w: 0}
   rightController: {fileID: 1355738320}
   leftController: {fileID: 1488680383}
-  timeWait: 50
+  timeWait: 25
   red: {fileID: 1881014976}
 --- !u!1 &1383537644
 GameObject:

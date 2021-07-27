@@ -181,13 +181,13 @@ public class JoyconMovement : MonoBehaviour
                 cont = 0;
                 it = 0;
 
-                float[] X = new float[150];
-                for (int i = 0; i < 150; i++)
-                {
-                    X[i] = move[i];
-                }
+                //float[] X = new float[150];
+                //for (int i = 0; i < 150; i++)
+                //{
+                //    X[i] = move[i];
+                //}
 
-                moves.Enqueue(red.GetComponent<NeuralNetwork>().Movement(X));
+                moves.Enqueue(red.GetComponent<NeuralNetwork>().Movement(move));
 
                 contWait = 0f;
 
