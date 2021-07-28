@@ -10,7 +10,6 @@ public class Slashing : MonoBehaviour
     public GameObject rSword;   //Espada derecha
     public GameObject lSword;   //Espada izquierda
     public GameObject points;   //Texto de los puntos
-    public GameObject slash;    //Sprite del corte
 
     public Text direccionR; //Texto para indicar hacia donde se mueve el mando
     public Text direccionL; //Texto para indicar hacia donde se mueve el mando
@@ -32,7 +31,6 @@ public class Slashing : MonoBehaviour
         checkMove = 50;
 
         star.SetActive(false);
-        slash.SetActive(false);
     }
 
     private void Update()
