@@ -5,7 +5,7 @@ using UnityEngine;
 
 public enum ObstacleType
 {
-    WOOD, ROCK, DEFAULT
+    WOOD, ROCK, POTION, DEFAULT
 }
 
 public class ObstacleLogic : MonoBehaviour

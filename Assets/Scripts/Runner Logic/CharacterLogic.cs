@@ -47,55 +47,77 @@ public class CharacterLogic : MonoBehaviour
             pos++;
         }*/
 
-        if (other.tag == "Potion")
+        /*if (other.tag == "Potion")
         {
             healthCounter++;
             SoundManager.Instance.Play(SoundManager.Instance.effects[1]);
             Debug.Log("Gano vida");
 
-            Destroy(other.gameObject);
-        }
-        else if (other.tag == "Obstacle")
+            other.gameObject.SetActive(false);
+        }*/
+        if (other.tag == "Obstacle")
         {
             if(other.GetComponent<ObstacleLogic>().obstacleType == ObstacleType.WOOD)
             {
                 Debug.Log("Pierdo vida: choque contra tronco");
                 healthCounter--;
+                SoundManager.Instance.Play(SoundManager.Instance.effects[2]);
             }
             else if (other.GetComponent<ObstacleLogic>().obstacleType == ObstacleType.ROCK)
             {
                 Debug.Log("Pierdo vida: choque contra piedra");
                 healthCounter = healthCounter - 2;
+                SoundManager.Instance.Play(SoundManager.Instance.effects[2]);
             }
+            else if (other.GetComponent<ObstacleLogic>().obstacleType == ObstacleType.POTION)
+            {
+                healthCounter++;
+                SoundManager.Instance.Play(SoundManager.Instance.effects[1]);
+                Debug.Log("Gano vida");
+
+                other.gameObject.SetActive(false);
+            }
+
             if (healthCounter <= 0)
             {
                 SoundManager.Instance.Play(SoundManager.Instance.effects[3]);
             }
-            else
-            {
-                SoundManager.Instance.Play(SoundManager.Instance.effects[2]);
-            }
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
         }
 
         if (other.tag == "PunctuationTrigger")
         {
             Debug.Log("Aumenta puntuacion");
-            GameManager.Instance.punctuation += 2;
+            RunnerSceneManager.Instance.punctuation += 2;
         }
 
         if (other.tag == "PoolTrigger")
         {
             Debug.Log("PoolTrigger");
-            ObjectPoolManager.SharedInstance.GeneratePoolObject();
 
+            ObjectPoolManager.SharedInstance.GeneratePoolObject();
+            
         }
 
         if (other.tag == "SpawnPoolPosition")
         {
             Debug.Log("SpawnPoolPosition");
-            other.gameObject.transform.parent.gameObject.SetActive(false);
 
+            //Aqui deberiamos desactivar contenedor y obstaculos
+            //Necesitamos tener una referencia a los obstaculos de ESE contenedor
+
+            
+
+            other.gameObject.transform.parent.gameObject.SetActive(false);
+            for (int i = 0; 
+                  i < ObjectPoolManager.SharedInstance.previousContainer.gameObject.
+                  GetComponent<ContainerController>().containerObstacles.Length; i++)
+            {
+                //Ojito aqui migente
+                //ObjectPoolManager.SharedInstance.pooledObstacles[i].SetActive(false);
+                ObjectPoolManager.SharedInstance.previousContainer.gameObject.
+                    GetComponent<ContainerController>().containerObstacles[i].SetActive(false);
+            }
         }
     }
 

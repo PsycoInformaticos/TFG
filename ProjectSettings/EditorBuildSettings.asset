@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Camino.unity
     guid: 7eade8c54c3b46746a5854c49293921e
   - enabled: 1
-    path: Assets/Scenes/Combat.unity
-    guid: 03566d5d5afad084c8f6358de611bb03
+    path: Assets/Scenes/Slashing.unity
+    guid: 5a1d96340d9a822428838c2b3067de6a
   m_configObjects: {}
