@@ -44,6 +44,9 @@ public class JoyconMovement : MonoBehaviour
     bool pressed;
 
     int type;
+
+    public bool jump;
+    public bool cut;
     
 
     void Start()
@@ -132,6 +135,12 @@ public class JoyconMovement : MonoBehaviour
             // Joycon has no magnetometer, so it cannot accurately determine its yaw value. Joycon.Recenter allows the user to reset the yaw value.
             j.Recenter();
 
+        }
+        if (j.GetButtonDown(Joycon.Button.DPAD_RIGHT)){
+            jump = true;
+        }
+        if (j.GetButtonDown(Joycon.Button.DPAD_LEFT)){
+            cut = true;
         }
 
     }
@@ -274,5 +283,25 @@ public class JoyconMovement : MonoBehaviour
     public void setNotPressed()
     {
         pressed = false;
+    }
+
+    public bool getJump()
+    {
+        return jump;
+    }
+
+    public void setJump()
+    {
+        jump = false;
+    }
+
+    public bool getCut()
+    {
+        return cut;
+    }
+
+    public void setCut()
+    {
+        cut = false;
     }
 }

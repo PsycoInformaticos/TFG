@@ -34,6 +34,11 @@ public class SimpleCharacterControl : MonoBehaviour {
     private bool m_isGrounded;
     private List<Collider> m_collisions = new List<Collider>();
 
+    public GameObject RightJoycon;
+    public GameObject LeftJoycon;
+
+    private bool updown = false;
+
     private void OnCollisionEnter(Collision collision)
     {
         ContactPoint[] contactPoints = collision.contacts;
@@ -93,7 +98,7 @@ public class SimpleCharacterControl : MonoBehaviour {
         switch(m_controlMode)
         {
             case ControlMode.Direct:
-                DirectUpdate();
+                //DirectUpdate();
                 break;
 
             case ControlMode.Tank:
@@ -110,31 +115,45 @@ public class SimpleCharacterControl : MonoBehaviour {
 
     private void TankUpdate()
     {
-        float v = Input.GetAxis("Vertical");
-        float h = Input.GetAxis("Horizontal");
+        //float v = Input.GetAxis("Vertical");
+        //float h = Input.GetAxis("Horizontal");
+        float v = 1;
 
-        bool walk = Input.GetKey(KeyCode.LeftShift);
+        //Este es el código para usar el movimiento del personaje, pero no siempre funciona correctamente. De cara a hacer las pruebas tenemos dos modos
+        //para hacerlas, de forman que podemos decidir que metodo queremos utilizar
 
-        if (v < 0) {
-            if (walk) { v *= m_backwardsWalkScale; }
-            else { v *= m_backwardRunScale; }
-        } else if(walk)
+        /*if ((RightJoycon.GetComponent<JoyconMovement>().moveType() == 0 || RightJoycon.GetComponent<JoyconMovement>().moveType() == 1)
+            && (LeftJoycon.GetComponent<JoyconMovement>().moveType() == 1 || LeftJoycon.GetComponent<JoyconMovement>().moveType() == 0))
         {
-            v *= m_walkScale;
+            updown = true;
         }
+        else
+        {
+            updown = false;
+        }
+        if (updown)
+        {
+            v = 1;
+        }
+        else
+        {
+            v = 0;
+        }*/
+
+        //v *= m_walkScale;
 
         m_currentV = Mathf.Lerp(m_currentV, v, Time.deltaTime * m_interpolation);
-        m_currentH = Mathf.Lerp(m_currentH, h, Time.deltaTime * m_interpolation);
+        //m_currentH = Mathf.Lerp(m_currentH, h, Time.deltaTime * m_interpolation);
 
         transform.position += transform.forward * m_currentV * m_moveSpeed * Time.deltaTime;
-        transform.Rotate(0, m_currentH * m_turnSpeed * Time.deltaTime, 0);
+        //transform.Rotate(0, m_currentH * m_turnSpeed * Time.deltaTime, 0);
 
         m_animator.SetFloat("MoveSpeed", m_currentV);
 
         JumpingAndLanding();
     }
 
-    private void DirectUpdate()
+    /*private void DirectUpdate()
     {
         float v = Input.GetAxis("Vertical");
         float h = Input.GetAxis("Horizontal");
@@ -167,16 +186,17 @@ public class SimpleCharacterControl : MonoBehaviour {
         }
 
         JumpingAndLanding();
-    }
+    }*/
 
     private void JumpingAndLanding()
     {
         bool jumpCooldownOver = (Time.time - m_jumpTimeStamp) >= m_minJumpInterval;
 
-        if (jumpCooldownOver && m_isGrounded && Input.GetKey(KeyCode.Space))
+        if (jumpCooldownOver && m_isGrounded && RightJoycon.GetComponent<JoyconMovement>().getJump())
         {
             m_jumpTimeStamp = Time.time;
             m_rigidBody.AddForce(Vector3.up * m_jumpForce, ForceMode.Impulse);
+            RightJoycon.GetComponent<JoyconMovement>().setJump();
         }
 
         if (!m_wasGrounded && m_isGrounded)
