@@ -1415,6 +1415,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: cf3d86a0de160fd40ab81002b3db290a, type: 3}
   - {fileID: 8300000, guid: 215ce68492ff979439c2b026580f0504, type: 3}
   - {fileID: 8300000, guid: 20afc7d7ab9c3d747b03d1071bcb0588, type: 3}
+  songs:
+  - {fileID: 8300000, guid: 40a496dca01bc8f459a43588059e5c6c, type: 3}
+  - {fileID: 8300000, guid: 7761daaca66ebd84f9b8ad95c7d4f8d2, type: 3}
 --- !u!4 &1319140317
 Transform:
   m_ObjectHideFlags: 0

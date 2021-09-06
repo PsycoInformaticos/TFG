@@ -846,8 +846,6 @@ MonoBehaviour:
   leftController: {fileID: 1936885828}
   timeWait: 0
   red: {fileID: 829058041}
-  jump: 0
-  cut: 0
 --- !u!1 &1116174425 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2977015220559768585, guid: ff491e834a540604f9ea3ca4b40ea424,
@@ -1845,8 +1843,6 @@ MonoBehaviour:
   leftController: {fileID: 1936885828}
   timeWait: 0
   red: {fileID: 829058041}
-  jump: 0
-  cut: 0
 --- !u!1 &2010991786
 GameObject:
   m_ObjectHideFlags: 0
@@ -2286,7 +2282,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.29
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -2389,6 +2385,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: cf3d86a0de160fd40ab81002b3db290a, type: 3}
   - {fileID: 8300000, guid: 215ce68492ff979439c2b026580f0504, type: 3}
   - {fileID: 8300000, guid: 20afc7d7ab9c3d747b03d1071bcb0588, type: 3}
+  songs:
+  - {fileID: 8300000, guid: 40a496dca01bc8f459a43588059e5c6c, type: 3}
+  - {fileID: 8300000, guid: 7761daaca66ebd84f9b8ad95c7d4f8d2, type: 3}
 --- !u!4 &2138014830
 Transform:
   m_ObjectHideFlags: 0
@@ -2511,6 +2510,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7916205651352905785, guid: 58f221f45b5515c4c9d9fb60d9722139,
+        type: 3}
+      propertyPath: songs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7916205651352905785, guid: 58f221f45b5515c4c9d9fb60d9722139,
+        type: 3}
+      propertyPath: songs.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 40a496dca01bc8f459a43588059e5c6c, type: 3}
+    - target: {fileID: 7916205651352905785, guid: 58f221f45b5515c4c9d9fb60d9722139,
+        type: 3}
+      propertyPath: songs.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 7761daaca66ebd84f9b8ad95c7d4f8d2, type: 3}
+    - target: {fileID: 7916205651352905785, guid: 58f221f45b5515c4c9d9fb60d9722139,
+        type: 3}
+      propertyPath: RunnerMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 40a496dca01bc8f459a43588059e5c6c, type: 3}
+    - target: {fileID: 7916205651352905785, guid: 58f221f45b5515c4c9d9fb60d9722139,
+        type: 3}
+      propertyPath: SlashingMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 7761daaca66ebd84f9b8ad95c7d4f8d2, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58f221f45b5515c4c9d9fb60d9722139, type: 3}
 --- !u!224 &2949587549709603383

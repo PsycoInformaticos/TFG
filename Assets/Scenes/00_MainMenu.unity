@@ -271,6 +271,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7916205651352905785, guid: 58f221f45b5515c4c9d9fb60d9722139,
+        type: 3}
+      propertyPath: RunnerMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 40a496dca01bc8f459a43588059e5c6c, type: 3}
+    - target: {fileID: 7916205651352905785, guid: 58f221f45b5515c4c9d9fb60d9722139,
+        type: 3}
+      propertyPath: SlashingMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 7761daaca66ebd84f9b8ad95c7d4f8d2, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58f221f45b5515c4c9d9fb60d9722139, type: 3}
 --- !u!114 &793961943 stripped
@@ -674,6 +684,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b573768fddc25a744bc625f0406bc5ed, type: 3}
   - {fileID: 8300000, guid: cf3d86a0de160fd40ab81002b3db290a, type: 3}
   - {fileID: 8300000, guid: 215ce68492ff979439c2b026580f0504, type: 3}
+  songs:
+  - {fileID: 8300000, guid: 40a496dca01bc8f459a43588059e5c6c, type: 3}
+  - {fileID: 8300000, guid: 7761daaca66ebd84f9b8ad95c7d4f8d2, type: 3}
 --- !u!4 &2138014830
 Transform:
   m_ObjectHideFlags: 0
