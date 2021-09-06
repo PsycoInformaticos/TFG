@@ -10,7 +10,13 @@ public class Slashing : MonoBehaviour
     public GameObject greenBot;     //Esfera verde a cortar
     public GameObject rSword;       //Espada derecha
     public GameObject lSword;       //Espada izquierda
-    public GameObject points;       //Texto de los puntos
+    public Text points;             //Texto de los puntos
+    int nPoints;                    //Número de puntos
+    public Text time;               //Texto del tiempo transcurrido
+    public float timer;                    //Contador del tiempo
+
+    public GameObject gameOverMenu;
+    public Text finalScore;
 
     //public Text direccionR; //Texto para indicar hacia donde se mueve el mando
     //public Text direccionL; //Texto para indicar hacia donde se mueve el mando
@@ -27,9 +33,15 @@ public class Slashing : MonoBehaviour
         nextStar = 100;
         contNextStar = 0;
         checkMove = 50;
+        nPoints = 0;
+        //timer = 121.0f;
+
+        points.text = "Score\n" + nPoints;
 
         pinkBot.SetActive(false);
         greenBot.SetActive(false);
+
+        gameOverMenu.SetActive(false);
     }
 
     private void Update()
@@ -59,36 +71,55 @@ public class Slashing : MonoBehaviour
         //direccionR.text = moveTypeR.ToString();
         //direccionL.text = moveTypeL.ToString();
 
-
-        if (sphereActive)
+        if (timer > 0)
         {
-            if (checkMove >= 100)
+            decreaseTime();
+
+            if (sphereActive)
             {
-                if (isSlashing())
+                if (checkMove >= 100)
                 {
-                    if(pinkBot.activeSelf) pinkBot.SetActive(false);
-                    else if (greenBot.activeSelf) greenBot.SetActive(false);
-                    sphereActive = false;
-                    points.GetComponent<Puntos>().setPoints(5);
+                    if (isSlashing())
+                    {
+                        if (pinkBot.activeSelf) pinkBot.SetActive(false);
+                        else if (greenBot.activeSelf) greenBot.SetActive(false);
+                        sphereActive = false;
+                        nPoints += 5;
+                        points.text = "Score\n" + nPoints;
 
+                    }
+
+                    contNextStar = 0;
+                    checkMove = 0;
                 }
-
-                contNextStar = 0;
-                checkMove = 0;
+                else checkMove++;
             }
-            else checkMove++;
-        }
-        else
-        {
-
-            contNextStar++;
-
-            if (contNextStar >= nextStar)
+            else
             {
-                sphereActive = true;
-                randomBot();
+
+                contNextStar++;
+
+                if (contNextStar >= nextStar)
+                {
+                    sphereActive = true;
+                    randomBot();
+                }
             }
         }
+
+        else if (timer <= 0)
+        {
+            gameOverMenu.SetActive(true);
+            finalScore.text = "Score\n" + nPoints;
+        }
+
+    }
+
+    void decreaseTime()
+    {
+        timer -= Time.deltaTime;
+        int t = (int)timer;
+        time.text = "Time\n" + t;
     }
 
     void randomBot() 
@@ -158,6 +189,23 @@ public class Slashing : MonoBehaviour
         }
         else 
             return false;
+    }
+
+    public void ResetGame()
+    {
+        nextStar = 100;
+        contNextStar = 0;
+        checkMove = 50;
+
+        timer = 121.0f;
+        nPoints = 0;
+        points.text = "Score\n" + nPoints;
+
+        pinkBot.SetActive(false);
+        greenBot.SetActive(false);
+        sphereActive = false;
+
+        gameOverMenu.SetActive(false);
     }
 
 }

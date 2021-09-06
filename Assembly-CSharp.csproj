@@ -74,7 +74,6 @@
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\JoyconDemo.cs" />
     <Compile Include="Assets\Scripts\JoyconMovement.cs" />
-    <Compile Include="Assets\Scripts\Puntos.cs" />
     <Compile Include="Assets\Scripts\Runner Logic\CharacterLogic.cs" />
     <Compile Include="Assets\Scripts\Runner Logic\ContainerController.cs" />
     <Compile Include="Assets\Scripts\Runner Logic\CutScript.cs" />

@@ -45,8 +45,8 @@ public class JoyconMovement : MonoBehaviour
 
     int type;
 
-    public bool jump;
-    public bool cut;
+    bool jump;
+    bool cut;
     
 
     void Start()
