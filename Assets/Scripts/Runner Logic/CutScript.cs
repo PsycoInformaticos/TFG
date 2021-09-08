@@ -19,7 +19,7 @@ public class CutScript : MonoBehaviour
         {
             if (RightJoycon.GetComponent<JoyconMovement>().getCut())
             {
-                Debug.Log("CORTAR: " + objCollider.name);
+                //Debug.Log("CORTAR: " + objCollider.name);
                 RunnerSceneManager.Instance.punctuation++;
 
                 SoundManager.Instance.Play(SoundManager.Instance.effects[0]);
@@ -42,7 +42,7 @@ public class CutScript : MonoBehaviour
             cutEnabled = true;
             objCollider = other.gameObject;
 
-            Debug.Log("DETECTA: " + objCollider.name);
+            //Debug.Log("DETECTA: " + objCollider.name);
         }
         else
         {

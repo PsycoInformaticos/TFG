@@ -106,7 +106,7 @@ public class SimpleCharacterControl : MonoBehaviour {
                 break;
 
             default:
-                Debug.LogError("Unsupported state");
+                //Debug.LogError("Unsupported state");
                 break;
         }
 

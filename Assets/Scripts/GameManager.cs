@@ -17,14 +17,14 @@ public class GameManager : MonoBehaviour
     
     public void LoadTargetScene(int index)
     {
-        Debug.Log("Loading scene");
+        //Debug.Log("Loading scene");
         SceneManager.LoadScene(index);
         Time.timeScale = 1;
     }
 
     public void ExitGame()
     {
-        Debug.Log("Exit");
+        //Debug.Log("Exit");
         Application.Quit();
     }
 

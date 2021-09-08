@@ -124,22 +124,33 @@ public class JoyconMovement : MonoBehaviour
 
     void Input()
     {
-        Joycon j = joycons[jcIndex];
+
+        Joycon jr = joycons[jcIndex];
+        Joycon jl = joycons[jcIndex + 1];
 
         //Al pulsar el boton PLUS o MINUS (depende del mando que se este usando) 
-        if (j.GetButtonDown(Joycon.Button.PLUS) || j.GetButtonDown(Joycon.Button.MINUS))
+        if (jr.GetButtonDown(Joycon.Button.PLUS))
         {
             //Activa el booleano para poder recoger la aceleracion en ColletData
             pressed = true;
 
             // Joycon has no magnetometer, so it cannot accurately determine its yaw value. Joycon.Recenter allows the user to reset the yaw value.
-            j.Recenter();
+            jr.Recenter();
 
         }
-        if (j.GetButtonDown(Joycon.Button.DPAD_RIGHT)){
+        if (jl.GetButtonDown(Joycon.Button.MINUS))
+        {
+            //Activa el booleano para poder recoger la aceleracion en ColletData
+            pressed = true;
+
+            // Joycon has no magnetometer, so it cannot accurately determine its yaw value. Joycon.Recenter allows the user to reset the yaw value.
+            jl.Recenter();
+
+        }
+        if (jr.GetButtonDown(Joycon.Button.DPAD_RIGHT)){
             jump = true;
         }
-        if (j.GetButtonDown(Joycon.Button.DPAD_LEFT)){
+        if (jr.GetButtonDown(Joycon.Button.DPAD_LEFT)){
             cut = true;
         }
 

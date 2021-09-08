@@ -59,13 +59,13 @@ public class CharacterLogic : MonoBehaviour
         {
             if(other.GetComponent<ObstacleLogic>().obstacleType == ObstacleType.WOOD)
             {
-                Debug.Log("Pierdo vida: choque contra tronco");
+                //Debug.Log("Pierdo vida: choque contra tronco");
                 healthCounter--;
                 SoundManager.Instance.Play(SoundManager.Instance.effects[2]);
             }
             else if (other.GetComponent<ObstacleLogic>().obstacleType == ObstacleType.ROCK)
             {
-                Debug.Log("Pierdo vida: choque contra piedra");
+                //Debug.Log("Pierdo vida: choque contra piedra");
                 healthCounter = healthCounter - 2;
                 SoundManager.Instance.Play(SoundManager.Instance.effects[2]);
             }
@@ -73,7 +73,7 @@ public class CharacterLogic : MonoBehaviour
             {
                 healthCounter++;
                 SoundManager.Instance.Play(SoundManager.Instance.effects[1]);
-                Debug.Log("Gano vida");
+                //Debug.Log("Gano vida");
 
                 other.gameObject.SetActive(false);
             }
@@ -87,13 +87,13 @@ public class CharacterLogic : MonoBehaviour
 
         if (other.tag == "PunctuationTrigger")
         {
-            Debug.Log("Aumenta puntuacion");
+            //Debug.Log("Aumenta puntuacion");
             RunnerSceneManager.Instance.punctuation += 2;
         }
 
         if (other.tag == "PoolTrigger")
         {
-            Debug.Log("PoolTrigger");
+            //Debug.Log("PoolTrigger");
 
             ObjectPoolManager.SharedInstance.GeneratePoolObject();
             
@@ -101,7 +101,7 @@ public class CharacterLogic : MonoBehaviour
 
         if (other.tag == "SpawnPoolPosition")
         {
-            Debug.Log("SpawnPoolPosition");
+            //Debug.Log("SpawnPoolPosition");
 
             //Aqui deberiamos desactivar contenedor y obstaculos
             //Necesitamos tener una referencia a los obstaculos de ESE contenedor

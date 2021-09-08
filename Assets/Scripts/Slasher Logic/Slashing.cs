@@ -46,27 +46,6 @@ public class Slashing : MonoBehaviour
 
     private void Update()
     {
-        //int moveTypeR = rSword.GetComponent<JoyconMovement>().moveType();
-        //int moveTypeL = lSword.GetComponent<JoyconMovement>().moveType();
-
-        //switch (moveTypeR)
-        //{
-        //    case 0:
-        //        direccionR.text = "UP";
-        //        break;
-        //    case 1:
-        //        direccionR.text = "DOWN";
-        //        break;
-        //    case 2:
-        //        direccionR.text = "RIGHT";
-        //        break;
-        //    case 3:
-        //        direccionR.text = "LEFT";
-        //        break;
-        //    case 4:
-        //        direccionR.text = "NONE";
-        //        break;
-        //}
 
         //direccionR.text = moveTypeR.ToString();
         //direccionL.text = moveTypeL.ToString();
@@ -164,8 +143,49 @@ public class Slashing : MonoBehaviour
         int moveTypeR = rSword.GetComponent<JoyconMovement>().moveType();
         int moveTypeL = lSword.GetComponent<JoyconMovement>().moveType();
 
+        //switch (moveTypeR)
+        //{
+        //    case 0:
+        //        Debug.Log("JoyconR: UP");
+        //        break;
+        //    case 1:
+        //        Debug.Log("JoyconR: DOWN");
+        //        break;
+        //    case 2:
+        //        Debug.Log("JoyconR: RIGHT");
+        //        break;
+        //    case 3:
+        //        Debug.Log("JoyconR: LEFT");
+        //        break;
+        //    case 4:
+        //        Debug.Log("JoyconR: NONE");
+        //        break;
+        //}
+
+        //switch (moveTypeL)
+        //{
+        //    case 0:
+        //        Debug.Log("JoyconL: UP");
+        //        break;
+        //    case 1:
+        //        Debug.Log("JoyconL: DOWN");
+        //        break;
+        //    case 2:
+        //        Debug.Log("JoyconL: RIGHT");
+        //        break;
+        //    case 3:
+        //        Debug.Log("JoyconL: LEFT");
+        //        break;
+        //    case 4:
+        //        Debug.Log("JoyconL: NONE");
+        //        break;
+        //}
+
         //direccionR.text = moveTypeR.ToString();
         //direccionL.text = moveTypeL.ToString();
+
+        //Debug.Log(pinkBot.transform.rotation.eulerAngles.z);
+        //Debug.Log(greenBot.transform.rotation.eulerAngles.z);
 
         //Si la esfera es rosa y se mueve la espada rosa en horizontal (2 = der, 3 = izq)
         if ((pinkBot.activeSelf && pinkBot.transform.rotation.eulerAngles.z == 0) && (moveTypeR == 2 || moveTypeR == 3))
