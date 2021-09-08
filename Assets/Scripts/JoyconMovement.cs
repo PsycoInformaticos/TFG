@@ -47,6 +47,7 @@ public class JoyconMovement : MonoBehaviour
 
     bool jump;
     bool cut;
+    bool walk;
     
 
     void Start()
@@ -152,6 +153,10 @@ public class JoyconMovement : MonoBehaviour
         }
         if (jr.GetButtonDown(Joycon.Button.DPAD_LEFT)){
             cut = true;
+        }
+        if (j.GetButtonDown(Joycon.Button.DPAD_UP))
+        {
+            walk = true;
         }
 
     }
@@ -314,5 +319,15 @@ public class JoyconMovement : MonoBehaviour
     public void setCut()
     {
         cut = false;
+    }
+
+    public bool getWalk()
+    {
+        return walk;
+    }
+
+    public void setWalk()
+    {
+        walk = false;
     }
 }

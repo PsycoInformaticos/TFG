@@ -115,30 +115,39 @@ public class SimpleCharacterControl : MonoBehaviour {
 
     private void TankUpdate()
     {
-        //float v = Input.GetAxis("Vertical");
-        //float h = Input.GetAxis("Horizontal");
-        float v = 1;
+
+        //float v = 1;
+        float v;
 
         //Este es el código para usar el movimiento del personaje, pero no siempre funciona correctamente. De cara a hacer las pruebas tenemos dos modos
         //para hacerlas, de forman que podemos decidir que metodo queremos utilizar
 
-        /*if ((RightJoycon.GetComponent<JoyconMovement>().moveType() == 0 || RightJoycon.GetComponent<JoyconMovement>().moveType() == 1)
-            && (LeftJoycon.GetComponent<JoyconMovement>().moveType() == 1 || LeftJoycon.GetComponent<JoyconMovement>().moveType() == 0))
-        {
-            updown = true;
-        }
-        else
-        {
-            updown = false;
-        }
-        if (updown)
+        if (LeftJoycon.GetComponent<JoyconMovement>().getWalk())
         {
             v = 1;
         }
         else
         {
-            v = 0;
-        }*/
+            LeftJoycon.GetComponent<JoyconMovement>().setWalk();
+
+            if ((RightJoycon.GetComponent<JoyconMovement>().moveType() == 0 || RightJoycon.GetComponent<JoyconMovement>().moveType() == 1)
+                && (LeftJoycon.GetComponent<JoyconMovement>().moveType() == 1 || LeftJoycon.GetComponent<JoyconMovement>().moveType() == 0))
+            {
+                updown = true;
+            }
+            else
+            {
+                updown = false;
+            }
+            if (updown)
+            {
+                v = 1;
+            }
+            else
+            {
+                v = 0;
+            }
+        }
 
         //v *= m_walkScale;
 
@@ -192,6 +201,7 @@ public class SimpleCharacterControl : MonoBehaviour {
     {
         bool jumpCooldownOver = (Time.time - m_jumpTimeStamp) >= m_minJumpInterval;
 
+        //if (jumpCooldownOver && m_isGrounded && Input.GetKeyDown("space"))
         if (jumpCooldownOver && m_isGrounded && RightJoycon.GetComponent<JoyconMovement>().getJump())
         {
             m_jumpTimeStamp = Time.time;

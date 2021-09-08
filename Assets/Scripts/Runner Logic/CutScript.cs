@@ -17,6 +17,8 @@ public class CutScript : MonoBehaviour
     {
         if (cutEnabled)
         {
+            //if (Input.GetKey("e"))
+            
             if (RightJoycon.GetComponent<JoyconMovement>().getCut())
             {
                 //Debug.Log("CORTAR: " + objCollider.name);
@@ -27,6 +29,8 @@ public class CutScript : MonoBehaviour
                 objCollider.gameObject.SetActive(false);
 
                 RightJoycon.GetComponent<JoyconMovement>().setCut();
+                
+                cutEnabled = false;
             }
             else 
             {

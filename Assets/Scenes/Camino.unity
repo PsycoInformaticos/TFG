@@ -2759,6 +2759,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1895518840, guid: fb5b942d61b43644784be7371e9eccf4, type: 3}
+      propertyPath: RightJoycon
+      value: 
+      objectReference: {fileID: 1103571053}
     - target: {fileID: 2929855035125314337, guid: fb5b942d61b43644784be7371e9eccf4,
         type: 3}
       propertyPath: m_LocalPosition.x
