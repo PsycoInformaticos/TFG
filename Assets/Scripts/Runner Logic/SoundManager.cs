@@ -16,6 +16,7 @@ public class SoundManager : MonoBehaviour
     public static SoundManager Instance = null;
 
     public AudioClip[] effects;
+    public AudioClip[] songs;
 
     // Initialize the singleton instance.
     private void Awake()

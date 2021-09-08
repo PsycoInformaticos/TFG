@@ -17,7 +17,16 @@ public class GameManager : MonoBehaviour
     
     public void LoadTargetScene(int index)
     {
-        //Debug.Log("Loading scene");
+        
+        if (index == 1)
+        {
+            SoundManager.Instance.PlayMusic(SoundManager.Instance.songs[0]);
+        }
+        else if (index == 2)
+        {
+            SoundManager.Instance.PlayMusic(SoundManager.Instance.songs[1]);
+        }
+        
         SceneManager.LoadScene(index);
         Time.timeScale = 1;
     }
