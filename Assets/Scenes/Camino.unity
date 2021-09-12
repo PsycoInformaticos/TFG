@@ -2907,7 +2907,7 @@ PrefabInstance:
         type: 3}
       propertyPath: LeftJoycon
       value: 
-      objectReference: {fileID: 1936885828}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb5b942d61b43644784be7371e9eccf4, type: 3}
 --- !u!4 &3899906796385336451 stripped
