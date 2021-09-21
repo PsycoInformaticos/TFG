@@ -171,9 +171,11 @@ public class JoyconMovement : MonoBehaviour
         // Accel values:  x, y, z axis values (in Gs)
         accel = j.GetAccel();
 
-        gravity.x = 0.9f * gravity.x + 0.1f * accel.x;
-        gravity.y = 0.9f * gravity.y + 0.1f * accel.y;
-        gravity.z = 0.9f * gravity.z + 0.1f * accel.z;
+        float alpha = 0.8f; //constante de filtro de paso bajo
+
+        gravity.x = alpha * gravity.x + (1 - alpha) * accel.x;
+        gravity.y = alpha * gravity.y + (1 - alpha) * accel.y;
+        gravity.z = alpha * gravity.z + (1 - alpha) * accel.z;
 
         linearAccel.x = accel.x - gravity.x;
         linearAccel.y = accel.y - gravity.y;

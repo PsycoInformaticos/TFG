@@ -37,16 +37,15 @@ def flatten(dimData, moves):
     return moves
 
 
-# In[3]:
+# In[29]:
 
 
 #Carga los datos
-os.chdir("D:/Documentos/UCM/TFG/Red Neuronal")
+os.chdir("D:/Documentos/UCM/TFG/Red Neuronal/Linear/Reposition") #/Linear/Reposition #/Gyro #Gyro_Not
 os.getcwd()
 
-
 moves, labels = [],[]
-dirMoves = ["UP.csv", "DOWN.csv", "RIGHT.csv", "LEFT.csv"]
+dirMoves = ["UP.csv", "DOWN.csv", "LEFT.csv", "RIGHT.csv", "NONE.csv"]
 
 #Guarda todos los archivos de datos
 for dir in dirMoves:
@@ -58,10 +57,9 @@ for dir in dirMoves:
         #print(row)
         moves.append(row)
         labels.append(dirMoves.index(dir))
-        
 
 
-# In[4]:
+# In[30]:
 
 
 #Separa el conjunto de datos en datos de prueba y de entrenamiento
@@ -83,7 +81,7 @@ print('Numero de movimientos de entrenamiento: ', len(train_moves))
 print('Numero de movimientos de prueba: ', len(test_moves))
 
 
-# In[5]:
+# In[31]:
 
 
 #"Aplana" los datos con la funcion auxiliar
@@ -102,21 +100,21 @@ classes = np.unique(train_labels)
 nClasses  = len(classes)
 
 
-# In[6]:
+# In[32]:
 
 
 #Para esta red neuronal se establecen tres capas, y 256 neuronas
 model = Sequential()
-model.add(Dense(256, activation = 'tanh', input_shape = (dataDim,)))
+model.add(Dense(625, activation = 'tanh', input_shape = (dataDim,)))
 model.add(Dropout(0.2))
-model.add(Dense(256, activation='tanh'))
+model.add(Dense(625, activation='tanh'))
 model.add(Dropout(0.2))
-model.add(Dense(256, activation='relu'))
+model.add(Dense(625, activation='relu'))
 model.add(Dropout(0.2))
 model.add(Dense(nClasses, activation='softmax'))
 
 
-epochs = 100
+epochs = 100;
 model.compile(optimizer='rmsprop', loss='categorical_crossentropy', metrics=['accuracy'])
 history = model.fit(train_data, train_labels_one_hot, batch_size = 256, epochs=epochs, verbose=1,
                     validation_data=(test_data, test_labels_one_hot))
@@ -128,7 +126,7 @@ print("Resultado de la evaluación : Perdidas = {}, Precisión = {}".format(test
 model.summary()
 
 
-# In[14]:
+# In[20]:
 
 
 #Serializa el modelo para JSON
@@ -153,6 +151,49 @@ loaded_model.load_weights(weights_path)
 
 #Test
 loaded_model.summary()
+
+
+# In[21]:
+
+
+import keras2onnx as k2o
+import onnx
+import onnxruntime
+
+# convert to onnx model
+onnx_model = k2o.convert_keras(model, model.name)
+
+#Save de onnx model
+temp_model_file = "D:/Documentos/UCM/TFG/Red Neuronal/Modelo/ONNX/model.onnx"
+k2o.save_model(onnx_model, temp_model_file)
+
+try:
+    sess = onnxruntime.InferenceSession(temp_model_file)
+    ok = True    
+except (InvalidGraph, TypeError, RuntimeError) as e:
+    # Probably a mismatch between onnxruntime and onnx version.
+    print(e)
+    ok = False
+
+if ok:
+    print("The model expects input shape:", sess.get_inputs()[0].shape)
+    print("x shape:", train_data.shape)
+    
+
+    x = train_data if isinstance(train_data, list) else [train_data]
+        
+    feed = dict([(input.name, x[n]) for n, input in enumerate(sess.get_inputs())])
+    pred_onnx = sess.run(None, feed)
+
+    prob = pred_onnx[0]
+    print(prob.ravel()[:10])
+    
+
+
+# In[ ]:
+
+
+
 
 
 # In[ ]:
